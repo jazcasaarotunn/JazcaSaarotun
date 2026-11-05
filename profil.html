@@ -1,1 +1,399 @@
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | My Little Garden</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Nunito:wght@400;500;600;700;800&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Overlay Mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-icon">🌷</div>
+            <div>
+                <h2>My Little Garden</h2>
+                <span>personal website</span>
+            </div>
+        </div>
+
+        <div class="sidebar-menu">
+            <p class="menu-label">MENU UTAMA</p>
+
+            <a href="index.html" class="menu-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="profil.html" class="menu-link">
+                <i class="fa-solid fa-user"></i>
+                <span>Profil Saya</span>
+            </a>
+
+            <a href="bukti-belajar.html" class="menu-link">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Bukti Belajar</span>
+            </a>
+
+            <a href="portofolio.html" class="menu-link">
+                <i class="fa-solid fa-folder-open"></i>
+                <span>Portofolio</span>
+            </a>
+
+            <a href="favorit.html" class="menu-link">
+                <i class="fa-solid fa-heart"></i>
+                <span>Hal Favorit</span>
+            </a>
+        </div>
+
+        <div class="sidebar-decoration">
+            <span>🌼</span>
+            <p>Keep growing, little flower!</p>
+            <span>🦋</span>
+        </div>
+
+        <div class="sidebar-footer">
+            <p>Made with ♡ and flowers</p>
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Topbar -->
+        <header class="topbar">
+
+            <div class="topbar-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div>
+                    <p class="topbar-greeting">Hello, Lovely! 🌸</p>
+                    <span>Get to know me better</span>
+                </div>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" title="Ganti tema">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+
+        </header>
+
+
+        <!-- Profile Header -->
+        <section class="page-heading">
+            <div>
+                <span class="section-eyebrow">A LITTLE ABOUT ME 🌷</span>
+                <h1>My Profile <span>♡</span></h1>
+                <p>Welcome to my little corner of the world!</p>
+            </div>
+
+            <div class="heading-decoration">🎀</div>
+        </section>
+
+
+        <!-- Profile Introduction -->
+        <section class="profile-intro content-card">
+
+            <div class="profile-photo-wrapper">
+                <div class="profile-photo">
+                    <img src="assets/images/profile.jpg" alt="Foto profil saya">
+                </div>
+                <span class="photo-decoration">🌸</span>
+            </div>
+
+            <div class="profile-intro-text">
+                <span class="cute-tag">Nice to meet you! ♡</span>
+
+                <h2>Hi, I'm <span>Nama Kamu</span>!</h2>
+
+                <p>
+                    Halo! Aku adalah seseorang yang suka belajar hal baru,
+                    mencoba berbagai pengalaman, dan mengembangkan kreativitas.
+                    Website ini adalah tempat kecil untuk mengenal diriku,
+                    perjalanan belajar, serta hal-hal yang aku sukai.
+                </p>
+
+                <div class="profile-social">
+                    <a href="#" title="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#" title="Email">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+
+                    <a href="#" title="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Biodata -->
+        <section class="profile-section">
+
+            <div class="section-title">
+                <div>
+                    <span class="section-eyebrow">PERSONAL INFORMATION</span>
+                    <h2>My Biodata <span>🌼</span></h2>
+                </div>
+            </div>
+
+            <div class="biodata-grid">
+
+                <div class="biodata-card">
+                    <div class="biodata-icon pink">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div>
+                        <span>Nama Lengkap</span>
+                        <h3>Nama Lengkap Kamu</h3>
+                    </div>
+                </div>
+
+                <div class="biodata-card">
+                    <div class="biodata-icon yellow">
+                        <i class="fa-solid fa-calendar"></i>
+                    </div>
+                    <div>
+                        <span>Tempat, Tanggal Lahir</span>
+                        <h3>Isi tanggal lahir</h3>
+                    </div>
+                </div>
+
+                <div class="biodata-card">
+                    <div class="biodata-icon green">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div>
+                        <span>Alamat</span>
+                        <h3>Kota tempat tinggal</h3>
+                    </div>
+                </div>
+
+                <div class="biodata-card">
+                    <div class="biodata-icon purple">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <span>Pendidikan</span>
+                        <h3>Nama Sekolah</h3>
+                    </div>
+                </div>
+
+                <div class="biodata-card">
+                    <div class="biodata-icon blue">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div>
+                        <span>Email</span>
+                        <h3>emailkamu@example.com</h3>
+                    </div>
+                </div>
+
+                <div class="biodata-card">
+                    <div class="biodata-icon pink">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <div>
+                        <span>Status</span>
+                        <h3>Pelajar</h3>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Education -->
+        <section class="profile-section">
+
+            <div class="section-title">
+                <div>
+                    <span class="section-eyebrow">MY JOURNEY</span>
+                    <h2>My Education <span>📚</span></h2>
+                </div>
+            </div>
+
+            <div class="education-card content-card">
+
+                <div class="education-item">
+                    <div class="education-icon">🎓</div>
+
+                    <div>
+                        <span class="education-year">Tahun - sekarang</span>
+                        <h3>Nama Sekolah Saat Ini</h3>
+                        <p>Isi jurusan atau kelas kamu di sini.</p>
+                    </div>
+                </div>
+
+                <div class="education-item">
+                    <div class="education-icon">🌷</div>
+
+                    <div>
+                        <span class="education-year">Tahun sebelumnya</span>
+                        <h3>Nama Sekolah Sebelumnya</h3>
+                        <p>Isi pengalaman pendidikan sebelumnya.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Hobbies -->
+        <section class="profile-section">
+
+            <div class="section-title">
+                <div>
+                    <span class="section-eyebrow">THINGS I LOVE</span>
+                    <h2>My Hobbies <span>🎀</span></h2>
+                </div>
+            </div>
+
+            <div class="hobby-grid">
+
+                <div class="hobby-card">
+                    <div class="hobby-image">🎧</div>
+                    <h3>Listening to Music</h3>
+                    <p>Menikmati musik dan menemukan lagu favorit.</p>
+                </div>
+
+                <div class="hobby-card">
+                    <div class="hobby-image">📖</div>
+                    <h3>Reading Books</h3>
+                    <p>Membaca cerita dan mendapatkan pengetahuan baru.</p>
+                </div>
+
+                <div class="hobby-card">
+                    <div class="hobby-image">🎬</div>
+                    <h3>Watching Movies</h3>
+                    <p>Menonton film untuk hiburan dan inspirasi.</p>
+                </div>
+
+                <div class="hobby-card">
+                    <div class="hobby-image">🌻</div>
+                    <h3>Learning</h3>
+                    <p>Belajar hal baru dan mengembangkan kemampuan.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Skills -->
+        <section class="profile-section">
+
+            <div class="section-title">
+                <div>
+                    <span class="section-eyebrow">WHAT I CAN DO</span>
+                    <h2>My Skills <span>✨</span></h2>
+                </div>
+            </div>
+
+            <div class="skills-card content-card">
+
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>HTML</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>CSS</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>JavaScript</span>
+                        <span>50%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 50%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span>Creativity</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Personal Motto -->
+        <section class="motto-card">
+
+            <div class="motto-decoration">🌷</div>
+
+            <span>MY LITTLE MOTTO</span>
+
+            <h2>
+                "Keep blooming, even when nobody is watching."
+            </h2>
+
+            <p>With love, from my little garden ♡</p>
+
+            <div class="motto-decoration bottom">🦋</div>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Made with ♡ by Me</p>
+            <span>© 2026 My Little Garden. All rights reserved.</span>
+        </footer>
+
+    </main>
+
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+
+</body>
+</html>
+
