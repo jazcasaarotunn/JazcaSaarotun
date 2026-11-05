@@ -15,6 +15,108 @@
 
     <!-- CSS Utama -->
     <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* Styling Khusus Penyesuaian Ukuran Teks & Grid */
+        .identity-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .identity-card {
+            background: var(--soft-cream);
+            padding: 22px 18px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(168, 184, 154, 0.2);
+            transition: var(--transition);
+        }
+
+        .identity-card:hover {
+            transform: translateY(-4px);
+            background: var(--white);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .identity-icon {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .identity-card h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 15px;
+            color: var(--brown-dark);
+            margin-bottom: 4px;
+        }
+
+        .identity-card p {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--sage-deep);
+        }
+
+        /* Hobi Grid 3 Kolom & Teks Lebih Besar */
+        .hobby-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .hobby-card-large {
+            background: var(--soft-cream);
+            padding: 24px 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(168, 184, 154, 0.2);
+            transition: var(--transition);
+        }
+
+        .hobby-card-large:hover {
+            transform: translateY(-5px);
+            background: var(--white);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .hobby-card-large .hobby-image {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .hobby-card-large h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 18px;
+            color: var(--brown-dark);
+            margin-bottom: 8px;
+        }
+
+        .hobby-card-large p {
+            font-size: 13px;
+            color: var(--brown-light);
+            line-height: 1.6;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .identity-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hobby-grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .identity-grid,
+            .hobby-grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -93,25 +195,42 @@
             <div class="heading-decoration">🌸</div>
         </section>
 
-        <!-- Garden Hero Profil -->
-        <section class="garden-hero content-card">
-            <div class="garden-hero-text">
-                <span class="cute-tag">✨ MA'SOEM UNIVERSITY</span>
-                <h2>Halo, Saya <span>Jazca</span></h2>
-                <p>
-                    Saya adalah mahasiswi aktif Prodi Sistem Informasi di Ma'soem University dengan NIM 262505015. Memiliki ketertarikan besar pada perancangan sistem, analisis data, serta merapikan struktur keuangan dan informasi digital secara kreatif dan terstruktur.
-                </p>
-                <div class="garden-signature">"Structure your data, bloom your mind." ♡</div>
-            </div>
-            <div class="garden-hero-photo">
-                <div class="photo-frame">
-                    <div class="profile-avatar-box">🌷</div>
-                    <span class="photo-caption">Jazca • Sistem Informasi</span>
+        <!-- Informasi Identitas Utama (Grid Kotak-Kotak) -->
+        <section class="profile-section">
+            <div class="section-title">
+                <div>
+                    <span class="section-eyebrow">PERSONAL DETAILS</span>
+                    <h2>Identitas Diri <span>✨</span></h2>
                 </div>
+            </div>
+            <div class="identity-grid">
+                <article class="identity-card">
+                    <div class="identity-icon">🌸</div>
+                    <h3>Nama Lengkap</h3>
+                    <p>Jazca</p>
+                </article>
+
+                <article class="identity-card">
+                    <div class="identity-icon">🎓</div>
+                    <h3>Program Studi</h3>
+                    <p>Sistem Informasi</p>
+                </article>
+
+                <article class="identity-card">
+                    <div class="identity-icon">🏛️</div>
+                    <h3>Perguruan Tinggi</h3>
+                    <p>Ma'soem University</p>
+                </article>
+
+                <article class="identity-card">
+                    <div class="identity-icon">🆔</div>
+                    <h3>NIM</h3>
+                    <p>262505015</p>
+                </article>
             </div>
         </section>
 
-        <!-- Hobbies Section -->
+        <!-- Hobbies Section (Tanpa 'Ngedit' & Teks Lebih Besar) -->
         <section class="profile-section">
             <div class="section-title">
                 <div>
@@ -119,36 +238,33 @@
                     <h2>Hobi & Kesukaan <span>🎨</span></h2>
                 </div>
             </div>
-            <div class="hobby-grid">
-                <article class="hobby-card">
-                    <div class="hobby-image">💻</div>
-                    <h3>Ngedit</h3>
-                    <p>Membuat tata letak & desain visual yang estetik.</p>
-                </article>
-                <article class="hobby-card">
+            <div class="hobby-grid-3">
+                <article class="hobby-card-large">
                     <div class="hobby-image">📚</div>
                     <h3>Baca Buku</h3>
-                    <p>Memperluas wawasan lewat lembaran cerita & ilmu.</p>
+                    <p>Memperluas wawasan dan imajinasi lewat lembaran cerita maupun literatur ilmu pengetahuan.</p>
                 </article>
-                <article class="hobby-card">
+
+                <article class="hobby-card-large">
                     <div class="hobby-image">🎬</div>
                     <h3>Menonton Film</h3>
-                    <p>Menikmati alur cerita & sinematografi yang inspiratif.</p>
+                    <p>Menikmati alur cerita, perkembangan karakter, dan seni sinematografi yang menginspirasi.</p>
                 </article>
-                <article class="hobby-card">
+
+                <article class="hobby-card-large">
                     <div class="hobby-image">🎵</div>
                     <h3>Musik</h3>
-                    <p>Mendengarkan melodi damai untuk menemani hari.</p>
+                    <p>Mendengarkan melodi damai untuk memberi ketenangan dan menemani aktivitas sehari-hari.</p>
                 </article>
             </div>
         </section>
 
-        <!-- Skills Section -->
+        <!-- Skills Section (Judul Diperbarui) -->
         <section class="profile-section">
             <div class="section-title">
                 <div>
-                    <span class="section-eyebrow">ACADEMIC SKILLS</span>
-                    <h2>Keahlian & Kemampuan <span>🌿</span></h2>
+                    <span class="section-eyebrow">ACADEMIC COMPETENCIES</span>
+                    <h2>Minat & Kompetensi Akademik <span>🌿</span></h2>
                 </div>
             </div>
             <div class="content-card skills-card">
@@ -161,7 +277,7 @@
                     <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div>
                 </div>
                 <div>
-                    <div class="skill-info"><span>Desain & Kreatif Visual (Ngedit)</span><span>80%</span></div>
+                    <div class="skill-info"><span>Desain & Kreatif Visual</span><span>80%</span></div>
                     <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div></div>
                 </div>
             </div>
