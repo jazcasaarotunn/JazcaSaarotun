@@ -1360,4 +1360,56 @@ ul {
     .number-system-results {
         grid-template-columns: 1fr;
     }
+   /* =====================================================
+   DARK MODE STYLING
+   ===================================================== */
+body.dark-mode {
+    --warm-cream: #1e1e1e;
+    --soft-cream: #282828;
+    --sage-green: #526348;
+    --dark-sage: #9bb090;
+    --baby-pink: #a8767e;
+    --pink-dark: #b87a67;
+    --butter-yellow: #b59f59;
+    --lavender: #6b5e8c;
+    --soft-brown: #d4b5a3;
+    --text-dark: #f0eae1;
+    --white: #333333;
+    
+    background-color: var(--warm-cream);
+    color: var(--text-dark);
+}
+
+body.dark-mode .sidebar {
+    background: var(--soft-cream);
+    border-right-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .topbar,
+body.dark-mode .content-card,
+body.dark-mode .calc-card,
+body.dark-mode .welcome-info > div,
+body.dark-mode .hobby-card,
+body.dark-mode .fact-card {
+    background: var(--soft-cream);
+    color: var(--text-dark);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .input-group input, 
+body.dark-mode .input-group select {
+    background: #1a1a1a;
+    color: #f0eae1;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .calc-result {
+    background: #1a1a1a;
+    color: #f0eae1;
+}
+
+body.dark-mode .sys-res-box {
+    background: #222222;
+    border-color: rgba(255, 255, 255, 0.1);
+}
 }
