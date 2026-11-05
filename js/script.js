@@ -1,4 +1,3 @@
-
 // ==========================================
 // MY LITTLE GARDEN - JAVASCRIPT
 // Cute Soft Cottagecore × Kawaii
@@ -235,6 +234,181 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+
+    // --------------------------------------
+    // 8. KALKULATOR MATEMATIKA INFORMATIKA (BUKTI BELAJAR)
+    // --------------------------------------
+
+    // Level 1: Modulo Calculator
+    const btnCalcModulo = document.getElementById("btnCalcModulo");
+    if (btnCalcModulo) {
+        btnCalcModulo.addEventListener("click", () => {
+            const a = parseInt(document.getElementById("modA").value);
+            const m = parseInt(document.getElementById("modM").value);
+            const resEl = document.getElementById("resModulo");
+
+            if (isNaN(a) || isNaN(m)) {
+                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Mohon isi semua input dengan bilangan bulat.`;
+                return;
+            }
+            if (m <= 0) {
+                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Modulus (m) harus berupa bilangan bulat positif (m > 0).`;
+                return;
+            }
+
+            let result = ((a % m) + m) % m;
+            let quotient = Math.floor(a / m);
+
+            resEl.innerHTML = `
+                <span class="result-tag tag-success">Hasil: ${a} mod ${m} = ${result}</span><br>
+                <strong>Proses Perhitungan:</strong><br>
+                Sisa pembagian diperoleh dari: $a = q \\times m + r$<br>
+                ${a} = (${quotient}) \\times ${m} + <strong>${result}</strong><br>
+                <small style="color: var(--brown-light);">Modulo merupakan operasi untuk memperoleh sisa pembagian bulat.</small>
+            `;
+        });
+    }
+
+    // Level 2: Congruence Checker
+    const btnCheckCongruence = document.getElementById("btnCheckCongruence");
+    if (btnCheckCongruence) {
+        btnCheckCongruence.addEventListener("click", () => {
+            const a = parseInt(document.getElementById("congA").value);
+            const b = parseInt(document.getElementById("congB").value);
+            const m = parseInt(document.getElementById("congM").value);
+            const resEl = document.getElementById("resCongruence");
+
+            if (isNaN(a) || isNaN(b) || isNaN(m)) {
+                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Masukkan nilai a, b, dan m yang valid.`;
+                return;
+            }
+            if (m <= 0) {
+                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Modulus (m) harus berupa bilangan bulat positif (m > 0).`;
+                return;
+            }
+
+            const diff = a - b;
+            const isCongruent = (diff % m === 0);
+
+            if (isCongruent) {
+                resEl.innerHTML = `
+                    <span class="result-tag tag-success">Status: KONGRUEN</span><br>
+                    <strong>Pernyataan:</strong> ${a} ≡ ${b} (mod ${m})<br>
+                    <strong>Proses Pengecekan:</strong><br>
+                    1. Hitung selisih (a - b): ${a} - ${b} = ${diff}<br>
+                    2. Cek keterbagian oleh m: ${diff} ÷ ${m} = ${diff / m} (Tanpa sisa)<br>
+                    Karena m = ${m} membagi habis (a - b) = ${diff}, maka ${a} dan ${b} adalah kongruen modulo ${m}.
+                `;
+            } else {
+                resEl.innerHTML = `
+                    <span class="result-tag tag-danger">Status: TIDAK KONGRUEN</span><br>
+                    <strong>Pernyataan:</strong> ${a} ≢ ${b} (mod ${m})<br>
+                    <strong>Proses Pengecekan:</strong><br>
+                    1. Hitung selisih (a - b): ${a} - ${b} = ${diff}<br>
+                    2. Cek keterbagian oleh m: ${diff} ÷ ${m} = ${(diff / m).toFixed(2)} (Ada sisa)<br>
+                    Karena m = ${m} tidak membagi habis (a - b) = ${diff}, maka ${a} dan ${b} tidak kongruen modulo ${m}.
+                `;
+            }
+        });
+    }
+
+    // Level 5: Number System Calculator
+    const btnConvertNum = document.getElementById("btnConvertNum");
+    const numInput = document.getElementById("numInput");
+
+    function convertNumberSystem() {
+        const val = document.getElementById("numInput")?.value.trim();
+        const base = parseInt(document.getElementById("numBase")?.value || 10);
+
+        const binVal = document.getElementById("binVal");
+        const decVal = document.getElementById("decVal");
+        const octVal = document.getElementById("octVal");
+        const hexVal = document.getElementById("hexVal");
+
+        if (!binVal || !decVal || !octVal || !hexVal) return;
+
+        if (!val) {
+            binVal.textContent = "-";
+            decVal.textContent = "-";
+            octVal.textContent = "-";
+            hexVal.textContent = "-";
+            return;
+        }
+
+        const decParsed = parseInt(val, base);
+
+        if (isNaN(decParsed)) {
+            binVal.textContent = "Invalid";
+            decVal.textContent = "Invalid";
+            octVal.textContent = "Invalid";
+            hexVal.textContent = "Invalid";
+            return;
+        }
+
+        binVal.textContent = decParsed.toString(2);
+        decVal.textContent = decParsed.toString(10);
+        octVal.textContent = decParsed.toString(8);
+        hexVal.textContent = decParsed.toString(16).toUpperCase();
+    }
+
+    if (btnConvertNum) {
+        btnConvertNum.addEventListener("click", convertNumberSystem);
+    }
+    if (numInput) {
+        numInput.addEventListener("input", convertNumberSystem);
+    }
+
+    // Level 6: Combinatorics Calculator
+    const btnCalcCombinatorics = document.getElementById("btnCalcCombinatorics");
+
+    function factorial(num) {
+        if (num < 0) return 0n;
+        if (num === 0 || num === 1) return 1n;
+        let result = 1n;
+        for (let i = 2n; i <= BigInt(num); i++) {
+            result *= i;
+        }
+        return result;
+    }
+
+    if (btnCalcCombinatorics) {
+        btnCalcCombinatorics.addEventListener("click", () => {
+            const n = parseInt(document.getElementById("combN").value);
+            const r = parseInt(document.getElementById("combR").value);
+            const resEl = document.getElementById("resCombinatorics");
+
+            if (isNaN(n) || isNaN(r)) {
+                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Mohon isi nilai n dan r.`;
+                return;
+            }
+            if (n < 0 || r < 0) {
+                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Nilai n dan r harus non-negatif (n, r ≥ 0).`;
+                return;
+            }
+            if (r > n) {
+                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Validasi gagal: Syarat 0 ≤ r ≤ n tidak terpenuhi (r tidak boleh lebih besar dari n).`;
+                return;
+            }
+
+            const nFact = factorial(n);
+            const rFact = factorial(r);
+            const nSubRFact = factorial(n - r);
+
+            const nPr = nFact / nSubRFact;
+            const nCr = nFact / (rFact * nSubRFact);
+
+            resEl.innerHTML = `
+                <span class="result-tag tag-info">Hasil Kombinatorika</span><br>
+                <strong>1. Permutasi P(${n}, ${r}) = ${nPr.toString()}</strong><br>
+                <small>Rumus: P(n,r) = n! / (n-r)!</small><br><br>
+                <strong>2. Kombinasi C(${n}, ${r}) = ${nCr.toString()}</strong><br>
+                <small>Rumus: C(n,r) = n! / (r! * (n-r)!)</small><br><br>
+                <small style="color: var(--brown-light);">
+                    <em>Catatan:</em> Permutasi memperhatikan urutan objek, sedangkan kombinasi tidak memperhatikan urutan.
+                </small>
+            `;
+        });
+    }
+
     console.log("Welcome to My Little Garden! 🌷");
 });
-
