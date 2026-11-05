@@ -92,122 +92,173 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
+    /* --- 5. EVENT LISTENER UNTUK TOMBOL KALKULATOR BUKTI BELAJAR --- */
+
+    // Tombol Level 1 (Modulo)
+    const btnCalcModulo = document.getElementById('btnCalcModulo');
+    if (btnCalcModulo) {
+        btnCalcModulo.addEventListener('click', hitungModulo);
+    }
+
+    // Tombol Level 2 (Pengecek Kongruensi)
+    const btnCheckCongruence = document.getElementById('btnCheckCongruence');
+    if (btnCheckCongruence) {
+        btnCheckCongruence.addEventListener('click', hitungKongruensi);
+    }
+
+    // Tombol Level 5 (Sistem Bilangan)
+    const btnConvertNum = document.getElementById('btnConvertNum');
+    if (btnConvertNum) {
+        btnConvertNum.addEventListener('click', konversiSistemBilangan);
+    }
+
+    // Tombol Level 6 (Kombinatorika)
+    const btnCalcCombinatorics = document.getElementById('btnCalcCombinatorics');
+    if (btnCalcCombinatorics) {
+        btnCalcCombinatorics.addEventListener('click', hitungKombinatorika);
+    }
+
 });
 
 
 /* =====================================================
-   FUNGSI KALKULATOR (BUKTI BELAJAR)
+   FUNGSI KALKULATOR (BUKTI BELAJAR) - AKURAT & TERSTRUKTUR
    ===================================================== */
 
-// 1. Kalkulator Diskon
-function hitungDiskon() {
-    const harga = parseFloat(document.getElementById('hargaBarang').value);
-    const diskon = parseFloat(document.getElementById('diskonBarang').value);
-    const hasilEl = document.getElementById('hasilDiskon');
+// 1. Level 1: Kalkulator Modulo ($a \pmod m$)
+function hitungModulo() {
+    const a = parseInt(document.getElementById('modA').value);
+    const m = parseInt(document.getElementById('modM').value);
+    const hasilEl = document.getElementById('resModulo');
 
-    if (isNaN(harga) || isNaN(diskon) || harga < 0 || diskon < 0 || diskon > 100) {
-        hasilEl.innerHTML = `<span class="result-tag tag-danger">Error</span><br>Masukkan nominal harga dan diskon (0-100%) dengan benar!`;
+    if (isNaN(a) || isNaN(m)) {
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Salah / Error</span><br>Harap masukkan angka bilangan bulat dan modulus dengan benar!`;
         return;
     }
 
-    const nilaiDiskon = (harga * diskon) / 100;
-    const hargaAkhir = harga - nilaiDiskon;
+    if (m <= 0) {
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Salah / Error</span><br>Modulus ($m$) harus bernilai lebih besar dari 0!`;
+        return;
+    }
+
+    // Rumus modulo akurat yang mendukung angka negatif
+    const sisaBagi = ((a % m) + m) % m;
+    const hasilBagi = Math.floor(a / m);
 
     hasilEl.innerHTML = `
-        <span class="result-tag tag-success">Berhasil Dihitung</span><br>
-        Potongan: <strong>Rp ${nilaiDiskon.toLocaleString('id-ID')}</strong><br>
-        Harga Akhir: <strong style="color: var(--sage-deep);">Rp ${hargaAkhir.toLocaleString('id-ID')}</strong>
+        <span class="result-tag tag-success">Benar & Valid</span><br>
+        Sisa Bagi ($a \\pmod m$): <strong style="color: var(--sage-deep); font-size: 14px;">${sisaBagi}</strong><br>
+        <small style="color: var(--brown-light);">Penjelasan: $${a} = (${hasilBagi} \\times ${m}) + ${sisaBagi}$</small>
     `;
 }
 
-// 2. Konversi Nilai Huruf
-function konversiNilai() {
-    const nilai = parseFloat(document.getElementById('nilaiAngka').value);
-    const hasilEl = document.getElementById('hasilKonversi');
+// 2. Level 2: Pengecek Kongruensi ($a \equiv b \pmod m$)
+function hitungKongruensi() {
+    const a = parseInt(document.getElementById('congA').value);
+    const b = parseInt(document.getElementById('congB').value);
+    const m = parseInt(document.getElementById('congM').value);
+    const hasilEl = document.getElementById('resCongruence');
 
-    if (isNaN(nilai) || nilai < 0 || nilai > 100) {
-        hasilEl.innerHTML = `<span class="result-tag tag-danger">Error</span><br>Masukkan rentang angka antara 0 sampai 100!`;
+    if (isNaN(a) || isNaN(b) || isNaN(m)) {
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Salah / Error</span><br>Harap isi semua kolom a, b, dan m dengan angka yang valid!`;
         return;
     }
 
-    let huruf = '';
-    let predikat = '';
-
-    if (nilai >= 85) { huruf = 'A'; predikat = 'Sangat Memuaskan (Cum laude) 🌟'; }
-    else if (nilai >= 75) { huruf = 'B'; predikat = 'Memuaskan 🌸'; }
-    else if (nilai >= 65) { huruf = 'C'; predikat = 'Cukup 🌱'; }
-    else if (nilai >= 50) { huruf = 'D'; predikat = 'Kurang ⚠️'; }
-    else { huruf = 'E'; predikat = 'Tidak Lulus ❌'; }
-
-    hasilEl.innerHTML = `
-        <span class="result-tag tag-info">Predikat Akademik</span><br>
-        Nilai Huruf: <strong style="font-size: 14px; color: var(--sage-deep);">${huruf}</strong><br>
-        Keterangan: <strong>${predikat}</strong>
-    `;
-}
-
-// 3. Konversi Sistem Bilangan
-function konversiBilangan() {
-    const desimal = parseInt(document.getElementById('angkaDesimal').value);
-    const hasilEl = document.getElementById('hasilBilangan');
-
-    if (isNaN(desimal) || desimal < 0) {
-        hasilEl.innerHTML = `<span class="result-tag tag-danger">Error</span><br>Masukkan bilangan desimal positif yang valid!`;
+    if (m <= 0) {
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Salah / Error</span><br>Modulus ($m$) harus lebih besar dari 0!`;
         return;
     }
 
-    const biner = desimal.toString(2);
-    const oktal = desimal.toString(8);
-    const hex = desimal.toString(16).toUpperCase();
+    const selisih = a - b;
+    const isKongruen = (selisih % m === 0);
 
-    hasilEl.innerHTML = `
-        <div class="number-system-results">
-            <div class="sys-res-box">
-                <span>BINER (Base 2)</span>
-                <strong>${biner}</strong>
-            </div>
-            <div class="sys-res-box">
-                <span>OKTAL (Base 8)</span>
-                <strong>${oktal}</strong>
-            </div>
-            <div class="sys-res-box">
-                <span>HEX (Base 16)</span>
-                <strong>${hex}</strong>
-            </div>
-            <div class="sys-res-box" style="grid-column: span 2;">
-                <span>DESIMAL UTAMA</span>
-                <strong style="color: var(--sage-deep);">${desimal}</strong>
-            </div>
-        </div>
-    `;
-}
-
-// 4. Kalkulator Honor / Gaji
-function hitungGaji() {
-    const jam = parseFloat(document.getElementById('jamKerja').value);
-    const tarif = parseFloat(document.getElementById('tarifJam').value);
-    const hasilEl = document.getElementById('hasilGaji');
-
-    if (isNaN(jam) || isNaN(tarif) || jam < 0 || tarif < 0) {
-        hasilEl.innerHTML = `<span class="result-tag tag-danger">Error</span><br>Masukkan jam kerja dan tarif per jam dengan valid!`;
-        return;
-    }
-
-    let totalGaji = 0;
-    let lembur = 0;
-
-    if (jam > 40) {
-        const jamNormal = 40;
-        const jamLembur = jam - 40;
-        totalGaji = (jamNormal * tarif) + (jamLembur * tarif * 1.5);
-        lembur = jamLembur;
+    if (isKongruen) {
+        hasilEl.innerHTML = `
+            <span class="result-tag tag-success">Benar (Kongruen)</span><br>
+            Pernyataan $${a} \\equiv ${b} \\pmod{${m}}$ adalah <strong>BENAR</strong>.<br>
+            <small style="color: var(--brown-light);">Alasan: Selisih $(${a} - ${b} = ${selisih})$ habis dibagi oleh ${m} (${selisih / m} $\\times$ ${m}).</small>
+        `;
     } else {
-        totalGaji = jam * tarif;
+        hasilEl.innerHTML = `
+            <span class="result-tag tag-danger">Tidak Kongruen</span><br>
+            Pernyataan $${a} \\equiv ${b} \\pmod{${m}}$ adalah <strong>SALAH</strong>.<br>
+            <small style="color: var(--brown-light);">Alasan: Selisih $${selisih}$ tidak habis dibagi oleh ${m}.</small>
+        `;
+    }
+}
+
+// 3. Level 5: Kalkulator Sistem Bilangan
+function konversiSistemBilangan() {
+    const inputVal = document.getElementById('numInput').value.trim();
+    const base = parseInt(document.getElementById('numBase').value);
+    
+    const binValEl = document.getElementById('binVal');
+    const decValEl = document.getElementById('decVal');
+    const octValEl = document.getElementById('octVal');
+    const hexValEl = document.getElementById('hexVal');
+
+    if (!inputVal) {
+        alert('Harap masukkan angka bilangan yang ingin dikonversi!');
+        return;
     }
 
+    let decimalValue;
+    try {
+        decimalValue = parseInt(inputVal, base);
+        if (isNaN(decimalValue)) {
+            throw new Error("Format tidak valid");
+        }
+    } catch (e) {
+        alert('Format angka tidak sesuai dengan basis asal yang dipilih!');
+        return;
+    }
+
+    // Tampilkan hasil dalam format kotak-kotak kecil yang rapi
+    if (binValEl) binValEl.textContent = decimalValue.toString(2);
+    if (decValEl) decValEl.textContent = decimalValue.toString(10);
+    if (octValEl) octValEl.textContent = decimalValue.toString(8);
+    if (hexValEl) hexValEl.textContent = decimalValue.toString(16).toUpperCase();
+}
+
+// 4. Level 6: Kalkulator Kombinatorika (Permutasi & Kombinasi)
+function hitungKombinatorika() {
+    const n = parseInt(document.getElementById('combN').value);
+    const r = parseInt(document.getElementById('combR').value);
+    const hasilEl = document.getElementById('resCombinatorics');
+
+    if (isNaN(n) || isNaN(r) || n < 0 || r < 0) {
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Salah / Error</span><br>Masukkan nilai $n$ dan $r$ berupa bilangan bulat non-negatif ($\\ge 0$).`;
+        return;
+    }
+
+    if (r > n) {
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Salah / Error</span><br>Nilai pilihan ($r$) tidak boleh lebih besar dari jumlah objek ($n$)!`;
+        return;
+    }
+
+    // Fungsi Faktorial Akurat
+    function hitungFaktorial(num) {
+        if (num === 0 || num === 1) return 1;
+        let hasil = 1;
+        for (let i = 2; i <= num; i++) {
+            hasil *= i;
+        }
+        return hasil;
+    }
+
+    const factN = hitungFaktorial(n);
+    const factNR = hitungFaktorial(n - r);
+    const factR = hitungFaktorial(r);
+
+    const permutasi = factN / factNR;
+    const kombinasi = factN / (factR * factNR);
+
     hasilEl.innerHTML = `
-        <span class="result-tag tag-success">Slip Gaji Digital</span><br>
-        Jam Lembur: <strong>${lembur} jam</strong><br>
-        Total Honor Bersih: <strong style="color: var(--sage-deep);">Rp ${totalGaji.toLocaleString('id-ID')}</strong>
+        <span class="result-tag tag-success">Berhasil Dihitung (Benar)</span><br>
+        <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 6px;">
+            <div>🧮 <strong>Permutasi $P(${n},${r})$:</strong> <span style="color: var(--sage-deep); font-weight: 700;">${permutasi.toLocaleString('id-ID')}</span></div>
+            <div>📊 <strong>Kombinasi $C(${n},${r})$:</strong> <span style="color: var(--sage-deep); font-weight: 700;">${kombinasi.toLocaleString('id-ID')}</span></div>
+        </div>
     `;
 }
