@@ -15,6 +15,87 @@
 
     <!-- CSS Utama -->
     <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* Animasi Elegan untuk Banner Utama */
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: translateY(15px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .hero-banner-fresh {
+            background: linear-gradient(135deg, var(--soft-cream), var(--warm-cream));
+            border: 1px solid rgba(168, 184, 154, 0.3);
+            border-radius: 25px;
+            padding: 45px 35px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            animation: fadeInScale 1s ease-out forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner-fresh::before {
+            content: '🌸';
+            position: absolute;
+            top: 20px;
+            left: 25px;
+            font-size: 24px;
+            opacity: 0.6;
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+
+        .hero-banner-fresh::after {
+            content: '🦋';
+            position: absolute;
+            bottom: 20px;
+            right: 25px;
+            font-size: 24px;
+            opacity: 0.6;
+            animation: floatSlow 5s ease-in-out infinite 1s;
+        }
+
+        .hero-banner-fresh h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(32px, 5vw, 44px);
+            color: var(--sage-deep);
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-banner-fresh p {
+            font-size: 14px;
+            color: var(--brown-light);
+            max-width: 600px;
+            margin: 0 auto 20px auto;
+            line-height: 1.7;
+        }
+
+        .hero-badge-cute {
+            display: inline-block;
+            background: var(--lavender);
+            color: var(--brown-dark);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .hero-signature-text {
+            font-family: 'Caveat', cursive;
+            font-size: 24px;
+            color: var(--sage-deep);
+            margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
 
@@ -93,29 +174,14 @@
             <div class="heading-decoration">🦋</div>
         </section>
 
-        <!-- Welcome Banner -->
-        <div class="content-card welcome-banner">
-            <span style="font-size: 24px;">✨🌸✨</span>
-            <h1 class="welcome-animated-text">Welcome to My Little Garden ♡</h1>
-            <p>Tempat rahasia untuk merangkum perjalanan belajar, hobi, dan mimpiku.</p>
-        </div>
-
-        <!-- Hero Section -->
-        <section class="garden-hero content-card">
-            <div class="garden-hero-text">
-                <span class="cute-tag">✨ MA'SOEM UNIVERSITY</span>
-                <h2>Halo, <span>Jazca</span>!</h2>
-                <p>
-                    Sebagai mahasiswi <strong>Sistem Informasi</strong> dengan NIM <strong>262505015</strong>, kamu bisa menggunakan dashboard ini untuk memantau perjalanan akademik, bukti belajar, serta portofolio kreatifmu di sini.
-                </p>
-                <div class="garden-signature">Keep blooming, Jazca ♡</div>
-            </div>
-            <div class="garden-hero-photo">
-                <div class="photo-frame">
-                    <img src="kkk.png" alt="Kawaii Animation">
-                    <span class="photo-caption">growing with joy ✨</span>
-                </div>
-            </div>
+        <!-- Banner Utama Baru (Tanpa Polaroid, Lebih Besar & Estetik) -->
+        <section class="hero-banner-fresh">
+            <span class="hero-badge-cute">✨ WELCOME TO MY LITTLE GARDEN ✨</span>
+            <h1>Halo, <span>Jazca</span>! ♡</h1>
+            <p>
+                Website pribadi tempat merangkum perjalanan akademik, koleksi bukti belajar, serta portofolio kreatif yang dikemas secara hangat dan rapi.
+            </p>
+            <div class="hero-signature-text">Keep blooming and growing! 🌷</div>
         </section>
 
         <!-- Quick Info -->
@@ -145,7 +211,7 @@
                 <article class="hobby-card">
                     <div class="hobby-image">🌸</div>
                     <h3>Fakultas</h3>
-                    <p><strong style="font-size: 13px; color: var(--sage-deep);">Ma'soem University</strong></p>
+                    <p><strong style="font-size: 13px; color: var(--sage-deep);">Ilmu Komputer & Sistem</strong></p>
                 </article>
             </div>
         </section>
