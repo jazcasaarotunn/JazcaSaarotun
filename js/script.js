@@ -118,44 +118,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* =====================================================
-   FUNGSI KALKULATOR DENGAN PENJELASAN LANGKAH KERJA
+   FUNGSI KALKULATOR TANPA KATA 'MOD' & ADA STATUS BENAR/SALAH
    ===================================================== */
 
-// LEVEL 1: Kalkulator Modulo (Dengan Penjelasan Detail Langkah Pengerjaan)
+// LEVEL 1: Kalkulator Modulo (Tanpa kata 'mod' di tampilan & ada kejelasan status)
 function hitungModulo() {
     const a = parseInt(document.getElementById('modA').value);
     const m = parseInt(document.getElementById('modM').value);
     const hasilEl = document.getElementById('resModulo');
 
     if (isNaN(a) || isNaN(m)) {
-        hasilEl.innerHTML = `<span class="result-tag tag-danger">Error</span><br>Harap masukkan angka bilangan bulat a dan modulus m dengan benar!`;
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Status: SALAH (Error)</span><br>Harap masukkan angka bilangan bulat a dan modulus m dengan benar!`;
         return;
     }
 
     if (m <= 0) {
-        hasilEl.innerHTML = `<span class="result-tag tag-danger">Error</span><br>Modulus m harus berupa bilangan bulat positif (m > 0)!`;
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Status: SALAH (Error)</span><br>Modulus m harus berupa bilangan bulat positif (m > 0)!`;
         return;
     }
 
-    // Rumus Matematika Diskrit untuk modulo (mendukung bilangan negatif)
     const sisaBagi = ((a % m) + m) % m;
     const hasilBagi = Math.floor(a / m);
 
     hasilEl.innerHTML = `
-        <span class="result-tag tag-success">Berhasil Dihitung</span><br>
-        <strong>Hasil: ${a} mod ${m} = ${sisaBagi}</strong><br>
+        <span class="result-tag tag-success">Status: BENAR (Valid)</span><br>
+        <strong>Sisa Pembagian ${a} dibagi ${m} adalah: ${sisaBagi}</strong><br>
         <div style="margin-top: 8px; padding: 10px; background: var(--warm-cream); border-radius: 10px; font-size: 12px; color: var(--brown-dark); border: 1px dashed rgba(168, 184, 154, 0.5); text-align: left;">
             <strong>Langkah Pengerjaan:</strong><br>
-            1. Operasi modulo mencari sisa pembagian bulat antara a dan m.<br>
-            2. Rumus dasar: a = (hasil_bagi x m) + sisa<br>
+            1. Operasi sisa bagi mencari sisa pembagian bulat antara ${a} dan ${m}.<br>
+            2. Rumus dasar: a = (hasil_bagi x modulus) + sisa<br>
             3. Penjabaran: ${a} = (${hasilBagi} x ${m}) + ${sisaBagi}.<br>
-            4. Oleh karena itu, sisa hasil pembagian ${a} dibagi ${m} adalah <strong>${sisaBagi}</strong>.
+            4. Kesimpulan: Perhitungan <strong>BENAR</strong> dengan sisa hasil bagi <strong>${sisaBagi}</strong>.
         </div>
     `;
 }
 
 
-// LEVEL 2: Pengecek Kongruensi (Dengan Penjelasan Pembuktian m membagi (a - b))
+// LEVEL 2: Pengecek Kongruensi (Dengan Status Jelas BENAR atau SALAH)
 function cekKongruensi() {
     const a = parseInt(document.getElementById('congA').value);
     const b = parseInt(document.getElementById('congB').value);
@@ -163,12 +162,12 @@ function cekKongruensi() {
     const hasilEl = document.getElementById('resCongruence');
 
     if (isNaN(a) || isNaN(b) || isNaN(m)) {
-        hasilEl.innerHTML = `<span class="result-tag tag-danger">Error</span><br>Harap isi semua kolom a, b, dan m dengan benar!`;
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Status: SALAH (Error)</span><br>Harap isi semua kolom a, b, dan m dengan benar!`;
         return;
     }
 
     if (m <= 0) {
-        hasilEl.innerHTML = `<span class="result-tag tag-danger">Error</span><br>Modulus m harus berupa bilangan bulat positif (m > 0)!`;
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Status: SALAH (Error)</span><br>Modulus m harus berupa bilangan bulat positif (m > 0)!`;
         return;
     }
 
@@ -178,26 +177,26 @@ function cekKongruensi() {
 
     if (isKongruen) {
         hasilEl.innerHTML = `
-            <span class="result-tag tag-success">Status: KONGRUEN (BENAR)</span><br>
-            <strong>Pernyataan: ${a} kongruen dengan ${b} (mod ${m})</strong><br>
+            <span class="result-tag tag-success">Status: BENAR (KONGRUEN)</span><br>
+            <strong>Pernyataan kongruensi valid dan terbukti benar.</strong><br>
             <div style="margin-top: 8px; padding: 10px; background: var(--warm-cream); border-radius: 10px; font-size: 12px; color: var(--brown-dark); border: 1px dashed rgba(168, 184, 154, 0.5); text-align: left;">
                 <strong>Langkah Pengerjaan & Pembuktian:</strong><br>
-                1. Konsep: a ≡ b (mod m) jika dan hanya jika m membagi habis (a - b).<br>
-                2. Hitung selisih: a - b = ${a} - ${b} = ${selisih}.<br>
+                1. Konsep: Bilangan a kongruen dengan b jika m membagi habis selisih (a - b).<br>
+                2. Hitung selisih: ${a} - ${b} = ${selisih}.<br>
                 3. Uji pembagian: ${selisih} / ${m} = ${selisih / m} (Habis dibagi tanpa sisa).<br>
-                4. Kesimpulan: Karena ${m} membagi habis ${selisih}, maka pernyataan <strong>KONGRUEN</strong>.
+                4. Kesimpulan: Karena ${m} membagi habis selisih tersebut, maka status pernyataan adalah <strong>BENAR (KONGRUEN)</strong>.
             </div>
         `;
     } else {
         hasilEl.innerHTML = `
-            <span class="result-tag tag-danger">Status: TIDAK KONGRUEN (SALAH)</span><br>
-            <strong>Pernyataan: ${a} tidak kongruen dengan ${b} (mod ${m})</strong><br>
+            <span class="result-tag tag-danger">Status: SALAH (TIDAK KONGRUEN)</span><br>
+            <strong>Pernyataan kongruensi tidak valid.</strong><br>
             <div style="margin-top: 8px; padding: 10px; background: var(--warm-cream); border-radius: 10px; font-size: 12px; color: var(--brown-dark); border: 1px dashed rgba(168, 184, 154, 0.5); text-align: left;">
                 <strong>Langkah Pengerjaan & Pembuktian:</strong><br>
-                1. Konsep: a ≡ b (mod m) jika dan hanya jika m membagi habis (a - b).<br>
-                2. Hitung selisih: a - b = ${a} - ${b} = ${selisih}.<br>
+                1. Konsep: Bilangan a kongruen dengan b jika m membagi habis selisih (a - b).<br>
+                2. Hitung selisih: ${a} - ${b} = ${selisih}.<br>
                 3. Uji pembagian: ${selisih} / ${m} menyisakan ${sisaMod}.<br>
-                4. Kesimpulan: Karena ${m} tidak habis membagi ${selisih}, maka pernyataan <strong>TIDAK KONGRUEN</strong>.
+                4. Kesimpulan: Karena ${m} tidak habis membagi selisih tersebut, maka status pernyataan adalah <strong>SALAH (TIDAK KONGRUEN)</strong>.
             </div>
         `;
     }
@@ -244,19 +243,19 @@ function konversiSistemBilangan() {
 }
 
 
-// LEVEL 6: Kalkulator Kombinatorika (Dengan Penjelasan Rumus Permutasi & Kombinasi)
+// LEVEL 6: Kalkulator Kombinatorika (Dengan Penjelasan Status Benar)
 function hitungKombinatorika() {
     const n = parseInt(document.getElementById('combN').value);
     const r = parseInt(document.getElementById('combR').value);
     const hasilEl = document.getElementById('resCombinatorics');
 
     if (isNaN(n) || isNaN(r) || n < 0 || r < 0) {
-        hasilEl.innerHTML = `<span class="result-tag tag-danger">Error</span><br>Masukkan nilai n dan r berupa bilangan bulat non-negatif (>= 0).`;
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Status: SALAH (Error)</span><br>Masukkan nilai n dan r berupa bilangan bulat non-negatif (>= 0).`;
         return;
     }
 
     if (r > n) {
-        hasilEl.innerHTML = `<span class="result-tag tag-danger">Error</span><br>Nilai pilihan r tidak boleh lebih besar dari jumlah objek n!`;
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Status: SALAH (Error)</span><br>Nilai pilihan r tidak boleh lebih besar dari jumlah objek n!`;
         return;
     }
 
@@ -277,7 +276,7 @@ function hitungKombinatorika() {
     const kombinasi = factN / (factR * factNR);
 
     hasilEl.innerHTML = `
-        <span class="result-tag tag-success">Berhasil Dihitung</span><br>
+        <span class="result-tag tag-success">Status: BENAR (Valid)</span><br>
         <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 6px;">
             <div>🧮 <strong>Permutasi P(${n},${r}):</strong> <span style="color: var(--sage-deep); font-weight: 700;">${permutasi.toLocaleString('id-ID')}</span></div>
             <div>📊 <strong>Kombinasi C(${n},${r}):</strong> <span style="color: var(--sage-deep); font-weight: 700;">${kombinasi.toLocaleString('id-ID')}</span></div>
