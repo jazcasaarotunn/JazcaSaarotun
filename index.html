@@ -5,410 +5,441 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // --------------------------------------
-    // 1. TANGGAL DAN JAM
-    // --------------------------------------
-
-    const currentDate = document.getElementById("currentDate");
-    const currentTime = document.getElementById("currentTime");
-
-    function updateDateTime() {
-        const now = new Date();
-
-        if (currentDate) {
-            currentDate.textContent = now.toLocaleDateString("id-ID", {
-                weekday: "long",
-                day: "numeric",
-                month: "long",
-                year: "numeric"
-            });
-        }
-
-        if (currentTime) {
-            currentTime.textContent = now.toLocaleTimeString("id-ID", {
-                hour: "2-digit",
-                minute: "2-digit",
-                second: "2-digit"
-            });
-        }
-    }
-
-    updateDateTime();
-    setInterval(updateDateTime, 1000);
-
-
-    // --------------------------------------
-    // 2. DARK MODE
-    // --------------------------------------
-
-    const themeToggle = document.getElementById("themeToggle");
-    const savedTheme = localStorage.getItem("garden-theme");
-
-    if (savedTheme === "dark") {
-        document.body.classList.add("dark-mode");
-    }
-
-    function updateThemeIcon() {
-        if (!themeToggle) return;
-
-        const icon = themeToggle.querySelector("i");
-
-        if (icon) {
-            icon.className = document.body.classList.contains("dark-mode")
-                ? "fa-solid fa-sun"
-                : "fa-solid fa-moon";
-        }
-    }
-
-    updateThemeIcon();
-
-    if (themeToggle) {
-        themeToggle.addEventListener("click", () => {
-            document.body.classList.toggle("dark-mode");
-
-            const isDark = document.body.classList.contains("dark-mode");
-
-            localStorage.setItem(
-                "garden-theme",
-                isDark ? "dark" : "light"
-            );
-
-            updateThemeIcon();
-        });
-    }
-
-
-    // --------------------------------------
-    // 3. MENU SIDEBAR MOBILE
-    // --------------------------------------
-
-    const menuToggle = document.getElementById("menuToggle");
-    const sidebar = document.getElementById("sidebar");
-    const sidebarOverlay = document.getElementById("sidebarOverlay");
-
-    function openSidebar() {
-        if (!sidebar || !sidebarOverlay) return;
-
-        sidebar.classList.add("active");
-        sidebarOverlay.classList.add("show");
-        document.body.style.overflow = "hidden";
-    }
-
-    function closeSidebar() {
-        if (!sidebar || !sidebarOverlay) return;
-
-        sidebar.classList.remove("active");
-        sidebarOverlay.classList.remove("show");
-        document.body.style.overflow = "";
-    }
-
-    if (menuToggle) {
-        menuToggle.addEventListener("click", () => {
-            if (sidebar && sidebar.classList.contains("active")) {
-                closeSidebar();
-            } else {
-                openSidebar();
-            }
-        });
-    }
-
-    if (sidebarOverlay) {
-        sidebarOverlay.addEventListener("click", closeSidebar);
-    }
-
-    // Tutup sidebar ketika menu dipilih
-    document.querySelectorAll(".menu-link").forEach(link => {
-        link.addEventListener("click", closeSidebar);
-    });
-
-    // Tutup sidebar dengan tombol Escape
-    document.addEventListener("keydown", event => {
-        if (event.key === "Escape") {
-            closeSidebar();
-        }
-    });
-
-
-    // --------------------------------------
-    // 4. QUOTE HARI INI
-    // --------------------------------------
-
-    const dailyQuote = document.getElementById("dailyQuote");
-    const newQuote = document.getElementById("newQuote");
-
-    const quotes = [
-        "Bloom at your own pace. 🌷",
-        "You are growing beautifully, even on quiet days. 🌿",
-        "Little steps can lead to lovely places. 🐰",
-        "Be gentle with yourself, sweetheart. 🎀",
-        "Every day is a new page in your story. 📖",
-        "Happiness grows in the little things. 🍓",
-        "You deserve a life as lovely as a garden. 🌼",
-        "Keep shining, little sunshine! ☀️",
-        "Believe in your tiny little dreams. 🦋",
-        "Take your time, everything will bloom. 🌸"
-    ];
-
-    function showRandomQuote() {
-        if (!dailyQuote) return;
-
-        const randomIndex = Math.floor(Math.random() * quotes.length);
-
-        dailyQuote.style.opacity = "0";
-
-        setTimeout(() => {
-            dailyQuote.textContent = quotes[randomIndex];
-            dailyQuote.style.opacity = "1";
-        }, 200);
-    }
-
-    if (newQuote) {
-        newQuote.addEventListener("click", showRandomQuote);
-    }
-
-
-    // --------------------------------------
-    // 5. MENU AKTIF SESUAI HALAMAN
-    // --------------------------------------
-
-    const currentPage = window.location.pathname.split("/").pop() || "index.html";
-
-    document.querySelectorAll(".menu-link").forEach(link => {
-        const linkPage = link.getAttribute("href");
-
-        if (linkPage === currentPage) {
-            link.classList.add("active");
-        } else {
-            link.classList.remove("active");
-        }
-    });
-
-
-    // --------------------------------------
-    // 6. ANIMASI SAAT ELEMEN MUNCUL
-    // --------------------------------------
-
-    const animatedElements = document.querySelectorAll(
-        ".stat-card, .content-card, .hero-card"
-    );
-
-    if ("IntersectionObserver" in window) {
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-
-        animatedElements.forEach(element => {
-            observer.observe(element);
-        });
-    } else {
-        animatedElements.forEach(element => {
-            element.classList.add("visible");
-        });
-    }
-
-
-    // --------------------------------------
-    // 7. UCAPAN BERDASARKAN WAKTU
-    // --------------------------------------
-
-    const greeting = document.querySelector(".topbar-greeting");
-
-    if (greeting) {
-        const hour = new Date().getHours();
-
-        if (hour >= 4 && hour < 11) {
-            greeting.textContent = "Good Morning, Sunshine! ☀️";
-        } else if (hour >= 11 && hour < 15) {
-            greeting.textContent = "Good Afternoon, Sweetie! 🌼";
-        } else if (hour >= 15 && hour < 18) {
-            greeting.textContent = "Good Evening, Lovely! 🌷";
-        } else {
-            greeting.textContent = "Good Night, Dreamer! 🌙";
-        }
-    }
-
-
-    // --------------------------------------
-    // 8. KALKULATOR MATEMATIKA INFORMATIKA (BUKTI BELAJAR)
-    // --------------------------------------
-
-    // Level 1: Modulo Calculator
-    const btnCalcModulo = document.getElementById("btnCalcModulo");
-    if (btnCalcModulo) {
-        btnCalcModulo.addEventListener("click", () => {
-            const a = parseInt(document.getElementById("modA").value);
-            const m = parseInt(document.getElementById("modM").value);
-            const resEl = document.getElementById("resModulo");
-
-            if (isNaN(a) || isNaN(m)) {
-                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Mohon isi semua input dengan bilangan bulat.`;
-                return;
-            }
-            if (m <= 0) {
-                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Modulus (m) harus berupa bilangan bulat positif (m > 0).`;
-                return;
-            }
-
-            let result = ((a % m) + m) % m;
-            let quotient = Math.floor(a / m);
-
-            resEl.innerHTML = `
-                <span class="result-tag tag-success">Hasil: ${a} mod ${m} = ${result}</span><br>
-                <strong>Proses Perhitungan:</strong><br>
-                Sisa pembagian diperoleh dari: $a = q \\times m + r$<br>
-                ${a} = (${quotient}) \\times ${m} + <strong>${result}</strong><br>
-                <small style="color: var(--brown-light);">Modulo merupakan operasi untuk memperoleh sisa pembagian bulat.</small>
-            `;
-        });
-    }
-
-    // Level 2: Congruence Checker
-    const btnCheckCongruence = document.getElementById("btnCheckCongruence");
-    if (btnCheckCongruence) {
-        btnCheckCongruence.addEventListener("click", () => {
-            const a = parseInt(document.getElementById("congA").value);
-            const b = parseInt(document.getElementById("congB").value);
-            const m = parseInt(document.getElementById("congM").value);
-            const resEl = document.getElementById("resCongruence");
-
-            if (isNaN(a) || isNaN(b) || isNaN(m)) {
-                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Masukkan nilai a, b, dan m yang valid.`;
-                return;
-            }
-            if (m <= 0) {
-                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Modulus (m) harus berupa bilangan bulat positif (m > 0).`;
-                return;
-            }
-
-            const diff = a - b;
-            const isCongruent = (diff % m === 0);
-
-            if (isCongruent) {
-                resEl.innerHTML = `
-                    <span class="result-tag tag-success">Status: KONGRUEN</span><br>
-                    <strong>Pernyataan:</strong> ${a} ≡ ${b} (mod ${m})<br>
-                    <strong>Proses Pengecekan:</strong><br>
-                    1. Hitung selisih (a - b): ${a} - ${b} = ${diff}<br>
-                    2. Cek keterbagian oleh m: ${diff} ÷ ${m} = ${diff / m} (Tanpa sisa)<br>
-                    Karena m = ${m} membagi habis (a - b) = ${diff}, maka ${a} dan ${b} adalah kongruen modulo ${m}.
-                `;
-            } else {
-                resEl.innerHTML = `
-                    <span class="result-tag tag-danger">Status: TIDAK KONGRUEN</span><br>
-                    <strong>Pernyataan:</strong> ${a} ≢ ${b} (mod ${m})<br>
-                    <strong>Proses Pengecekan:</strong><br>
-                    1. Hitung selisih (a - b): ${a} - ${b} = ${diff}<br>
-                    2. Cek keterbagian oleh m: ${diff} ÷ ${m} = ${(diff / m).toFixed(2)} (Ada sisa)<br>
-                    Karena m = ${m} tidak membagi habis (a - b) = ${diff}, maka ${a} dan ${b} tidak kongruen modulo ${m}.
-                `;
-            }
-        });
-    }
-
-    // Level 5: Number System Calculator
-    const btnConvertNum = document.getElementById("btnConvertNum");
-    const numInput = document.getElementById("numInput");
-
-    function convertNumberSystem() {
-        const val = document.getElementById("numInput")?.value.trim();
-        const base = parseInt(document.getElementById("numBase")?.value || 10);
-
-        const binVal = document.getElementById("binVal");
-        const decVal = document.getElementById("decVal");
-        const octVal = document.getElementById("octVal");
-        const hexVal = document.getElementById("hexVal");
-
-        if (!binVal || !decVal || !octVal || !hexVal) return;
-
-        if (!val) {
-            binVal.textContent = "-";
-            decVal.textContent = "-";
-            octVal.textContent = "-";
-            hexVal.textContent = "-";
-            return;
-        }
-
-        const decParsed = parseInt(val, base);
-
-        if (isNaN(decParsed)) {
-            binVal.textContent = "Invalid";
-            decVal.textContent = "Invalid";
-            octVal.textContent = "Invalid";
-            hexVal.textContent = "Invalid";
-            return;
-        }
-
-        binVal.textContent = decParsed.toString(2);
-        decVal.textContent = decParsed.toString(10);
-        octVal.textContent = decParsed.toString(8);
-        hexVal.textContent = decParsed.toString(16).toUpperCase();
-    }
-
-    if (btnConvertNum) {
-        btnConvertNum.addEventListener("click", convertNumberSystem);
-    }
-    if (numInput) {
-        numInput.addEventListener("input", convertNumberSystem);
-    }
-
-    // Level 6: Combinatorics Calculator
-    const btnCalcCombinatorics = document.getElementById("btnCalcCombinatorics");
-
-    function factorial(num) {
-        if (num < 0) return 0n;
-        if (num === 0 || num === 1) return 1n;
-        let result = 1n;
-        for (let i = 2n; i <= BigInt(num); i++) {
-            result *= i;
-        }
-        return result;
-    }
-
-    if (btnCalcCombinatorics) {
-        btnCalcCombinatorics.addEventListener("click", () => {
-            const n = parseInt(document.getElementById("combN").value);
-            const r = parseInt(document.getElementById("combR").value);
-            const resEl = document.getElementById("resCombinatorics");
-
-            if (isNaN(n) || isNaN(r)) {
-                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Mohon isi nilai n dan r.`;
-                return;
-            }
-            if (n < 0 || r < 0) {
-                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Nilai n dan r harus non-negatif (n, r ≥ 0).`;
-                return;
-            }
-            if (r > n) {
-                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Validasi gagal: Syarat 0 ≤ r ≤ n tidak terpenuhi (r tidak boleh lebih besar dari n).`;
-                return;
-            }
-
-            const nFact = factorial(n);
-            const rFact = factorial(r);
-            const nSubRFact = factorial(n - r);
-
-            const nPr = nFact / nSubRFact;
-            const nCr = nFact / (rFact * nSubRFact);
-
-            resEl.innerHTML = `
-                <span class="result-tag tag-info">Hasil Kombinatorika</span><br>
-                <strong>1. Permutasi P(${n}, ${r}) = ${nPr.toString()}</strong><br>
-                <small>Rumus: P(n,r) = n! / (n-r)!</small><br><br>
-                <strong>2. Kombinasi C(${n}, ${r}) = ${nCr.toString()}</strong><br>
-                <small>Rumus: C(n,r) = n! / (r! * (n-r)!)</small><br><br>
-                <small style="color: var(--brown-light);">
-                    <em>Catatan:</em> Permutasi memperhatikan urutan objek, sedangkan kombinasi tidak memperhatikan urutan.
-                </small>
-            `;
-        });
-    }
-
-    console.log("Welcome to My Little Garden! 🌷");
+    // --------------------------------------
+    // 1. TANGGAL DAN JAM
+    // --------------------------------------
+
+    const currentDate = document.getElementById("currentDate");
+    const currentTime = document.getElementById("currentTime");
+
+    function updateDateTime() {
+        const now = new Date();
+
+        if (currentDate) {
+            currentDate.textContent = now.toLocaleDateString("id-ID", {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            });
+        }
+
+        if (currentTime) {
+            currentTime.textContent = now.toLocaleTimeString("id-ID", {
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            });
+        }
+    }
+
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+
+
+    // --------------------------------------
+    // 2. DARK MODE
+    // --------------------------------------
+
+    const themeToggle = document.getElementById("themeToggle");
+    const savedTheme = localStorage.getItem("garden-theme");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+    }
+
+    function updateThemeIcon() {
+        if (!themeToggle) return;
+
+        const icon = themeToggle.querySelector("i");
+
+        if (icon) {
+            icon.className = document.body.classList.contains("dark-mode")
+                ? "fa-solid fa-sun"
+                : "fa-solid fa-moon";
+        }
+    }
+
+    updateThemeIcon();
+
+    if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+
+            const isDark = document.body.classList.contains("dark-mode");
+
+            localStorage.setItem(
+                "garden-theme",
+                isDark ? "dark" : "light"
+            );
+
+            updateThemeIcon();
+        });
+    }
+
+
+    // --------------------------------------
+    // 3. MENU SIDEBAR MOBILE
+    // --------------------------------------
+
+    const menuToggle = document.getElementById("menuToggle");
+    const sidebar = document.getElementById("sidebar");
+    const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+    function openSidebar() {
+        if (!sidebar || !sidebarOverlay) return;
+
+        sidebar.classList.add("active");
+        sidebarOverlay.classList.add("show");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeSidebar() {
+        if (!sidebar || !sidebarOverlay) return;
+
+        sidebar.classList.remove("active");
+        sidebarOverlay.classList.remove("show");
+        document.body.style.overflow = "";
+    }
+
+    if (menuToggle) {
+        menuToggle.addEventListener("click", () => {
+            if (sidebar && sidebar.classList.contains("active")) {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
+        });
+    }
+
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener("click", closeSidebar);
+    }
+
+    // Tutup sidebar ketika menu dipilih
+    document.querySelectorAll(".menu-link").forEach(link => {
+        link.addEventListener("click", closeSidebar);
+    });
+
+    // Tutup sidebar dengan tombol Escape
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+            closeSidebar();
+        }
+    });
+
+
+    // --------------------------------------
+    // 4. A LITTLE INTRODUCTION & MY FAVORITES DATA
+    // --------------------------------------
+
+    const profileData = {
+        introduction: "Halo! Aku Jazca, mahasiswi Sistem Informasi di Ma'soem University yang menyukai dunia pemrograman, desain web estetik, dan proses belajar yang menyenangkan.",
+        favorites: {
+            music: "Lo-Fi & Chill Pop",
+            book: "Novel Fiksi & Self-Improvement",
+            movie: "Studio Ghibli & Inspiring Films",
+            color: "Sage Green & Pastel Cream"
+        }
+    };
+
+    console.log("A Little Introduction:", profileData.introduction);
+    console.log("My Favorites:", profileData.favorites);
+
+
+    // --------------------------------------
+    // 5. QUOTE HARI INI
+    // --------------------------------------
+
+    const dailyQuote = document.getElementById("dailyQuote");
+    const newQuote = document.getElementById("newQuote");
+
+    const quotes = [
+        "Bloom at your own pace. 🌷",
+        "You are growing beautifully, even on quiet days. 🌿",
+        "Little steps can lead to lovely places. 🐰",
+        "Be gentle with yourself, sweetheart. 🎀",
+        "Every day is a new page in your story. 📖",
+        "Happiness grows in the little things. 🍓",
+        "You deserve a life as lovely as a garden. 🌼",
+        "Keep shining, little sunshine! ☀️",
+        "Believe in your tiny little dreams. 🦋",
+        "Take your time, everything will bloom. 🌸",
+        `Favorite Vibe: ${profileData.favorites.music} & ${profileData.favorites.color} 🎧`
+    ];
+
+    function showRandomQuote() {
+        if (!dailyQuote) return;
+
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+
+        dailyQuote.style.opacity = "0";
+
+        setTimeout(() => {
+            dailyQuote.textContent = quotes[randomIndex];
+            dailyQuote.style.opacity = "1";
+        }, 200);
+    }
+
+    if (newQuote) {
+        newQuote.addEventListener("click", showRandomQuote);
+    }
+
+
+    // --------------------------------------
+    // 6. MENU AKTIF SESUAI HALAMAN
+    // --------------------------------------
+
+    const currentPage = window.location.pathname.split("/").pop() || "index.html";
+
+    document.querySelectorAll(".menu-link").forEach(link => {
+        const linkPage = link.getAttribute("href");
+
+        if (linkPage === currentPage) {
+            link.classList.add("active");
+        } else {
+            link.classList.remove("active");
+        }
+    });
+
+
+    // --------------------------------------
+    // 7. ANIMASI SAAT ELEMEN MUNCUL & EFEK BERGERAK KARTUN
+    // --------------------------------------
+
+    const animatedElements = document.querySelectorAll(
+        ".stat-card, .content-card, .hero-card, .garden-hero-photo"
+    );
+
+    if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        animatedElements.forEach(element => {
+            observer.observe(element);
+        });
+    } else {
+        animatedElements.forEach(element => {
+            element.classList.add("visible");
+        });
+    }
+
+    // Tambahan interaksi bergerak halus pada bingkai foto/kartun saat kursor mendekat
+    const heroPhotoFrame = document.querySelector(".garden-hero-photo");
+    if (heroPhotoFrame) {
+        heroPhotoFrame.addEventListener("mouseenter", () => {
+            heroPhotoFrame.style.transform = "scale(1.02) translateY(-4px)";
+            heroPhotoFrame.style.transition = "transform 0.3s ease";
+        });
+        heroPhotoFrame.addEventListener("mouseleave", () => {
+            heroPhotoFrame.style.transform = "scale(1) translateY(0)";
+        });
+    }
+
+
+    // --------------------------------------
+    // 8. UCAPAN BERDASARKAN WAKTU
+    // --------------------------------------
+
+    const greeting = document.querySelector(".topbar-greeting");
+
+    if (greeting) {
+        const hour = new Date().getHours();
+
+        if (hour >= 4 && hour < 11) {
+            greeting.textContent = "Good Morning, Sunshine! ☀️";
+        } else if (hour >= 11 && hour < 15) {
+            greeting.textContent = "Good Afternoon, Sweetie! 🌼";
+        } else if (hour >= 15 && hour < 18) {
+            greeting.textContent = "Good Evening, Lovely! 🌷";
+        } else {
+            greeting.textContent = "Good Night, Dreamer! 🌙";
+        }
+    }
+
+
+    // --------------------------------------
+    // 9. KALKULATOR MATEMATIKA INFORMATIKA (BUKTI BELAJAR)
+    // --------------------------------------
+
+    // Level 1: Modulo Calculator
+    const btnCalcModulo = document.getElementById("btnCalcModulo");
+    if (btnCalcModulo) {
+        btnCalcModulo.addEventListener("click", () => {
+            const a = parseInt(document.getElementById("modA").value);
+            const m = parseInt(document.getElementById("modM").value);
+            const resEl = document.getElementById("resModulo");
+
+            if (isNaN(a) || isNaN(m)) {
+                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Mohon isi semua input dengan bilangan bulat.`;
+                return;
+            }
+            if (m <= 0) {
+                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Modulus (m) harus berupa bilangan bulat positif (m > 0).`;
+                return;
+            }
+
+            let result = ((a % m) + m) % m;
+            let quotient = Math.floor(a / m);
+
+            resEl.innerHTML = `
+                <span class="result-tag tag-success">Hasil: ${a} mod ${m} = ${result}</span><br>
+                <strong>Proses Perhitungan:</strong><br>
+                Sisa pembagian diperoleh dari: $a = q \\times m + r$<br>
+                ${a} = (${quotient}) \\times ${m} + <strong>${result}</strong><br>
+                <small style="color: var(--brown-light);">Modulo merupakan operasi untuk memperoleh sisa pembagian bulat.</small>
+            `;
+        });
+    }
+
+    // Level 2: Congruence Checker
+    const btnCheckCongruence = document.getElementById("btnCheckCongruence");
+    if (btnCheckCongruence) {
+        btnCheckCongruence.addEventListener("click", () => {
+            const a = parseInt(document.getElementById("congA").value);
+            const b = parseInt(document.getElementById("congB").value);
+            const m = parseInt(document.getElementById("congM").value);
+            const resEl = document.getElementById("resCongruence");
+
+            if (isNaN(a) || isNaN(b) || isNaN(m)) {
+                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Masukkan nilai a, b, dan m yang valid.`;
+                return;
+            }
+            if (m <= 0) {
+                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Modulus (m) harus berupa bilangan bulat positif (m > 0).`;
+                return;
+            }
+
+            const diff = a - b;
+            const isCongruent = (diff % m === 0);
+
+            if (isCongruent) {
+                resEl.innerHTML = `
+                    <span class="result-tag tag-success">Status: KONGRUEN</span><br>
+                    <strong>Pernyataan:</strong> ${a} ≡ ${b} (mod ${m})<br>
+                    <strong>Proses Pengecekan:</strong><br>
+                    1. Hitung selisih (a - b): ${a} - ${b} = ${diff}<br>
+                    2. Cek keterbagian oleh m: ${diff} ÷ ${m} = ${diff / m} (Tanpa sisa)<br>
+                    Karena m = ${m} membagi habis (a - b) = ${diff}, maka ${a} dan ${b} adalah kongruen modulo ${m}.
+                `;
+            } else {
+                resEl.innerHTML = `
+                    <span class="result-tag tag-danger">Status: TIDAK KONGRUEN</span><br>
+                    <strong>Pernyataan:</strong> ${a} ≢ ${b} (mod ${m})<br>
+                    <strong>Proses Pengecekan:</strong><br>
+                    1. Hitung selisih (a - b): ${a} - ${b} = ${diff}<br>
+                    2. Cek keterbagian oleh m: ${diff} ÷ ${m} = ${(diff / m).toFixed(2)} (Ada sisa)<br>
+                    Karena m = ${m} tidak membagi habis (a - b) = ${diff}, maka ${a} dan ${b} tidak kongruen modulo ${m}.
+                `;
+            }
+        });
+    }
+
+    // Level 5: Number System Calculator
+    const btnConvertNum = document.getElementById("btnConvertNum");
+    const numInput = document.getElementById("numInput");
+
+    function convertNumberSystem() {
+        const val = document.getElementById("numInput")?.value.trim();
+        const base = parseInt(document.getElementById("numBase")?.value || 10);
+
+        const binVal = document.getElementById("binVal");
+        const decVal = document.getElementById("decVal");
+        const octVal = document.getElementById("octVal");
+        const hexVal = document.getElementById("hexVal");
+
+        if (!binVal || !decVal || !octVal || !hexVal) return;
+
+        if (!val) {
+            binVal.textContent = "-";
+            decVal.textContent = "-";
+            octVal.textContent = "-";
+            hexVal.textContent = "-";
+            return;
+        }
+
+        const decParsed = parseInt(val, base);
+
+        if (isNaN(decParsed)) {
+            binVal.textContent = "Invalid";
+            decVal.textContent = "Invalid";
+            octVal.textContent = "Invalid";
+            hexVal.textContent = "Invalid";
+            return;
+        }
+
+        binVal.textContent = decParsed.toString(2);
+        decVal.textContent = decParsed.toString(10);
+        octVal.textContent = decParsed.toString(8);
+        hexVal.textContent = decParsed.toString(16).toUpperCase();
+    }
+
+    if (btnConvertNum) {
+        btnConvertNum.addEventListener("click", convertNumberSystem);
+    }
+    if (numInput) {
+        numInput.addEventListener("input", convertNumberSystem);
+    }
+
+    // Level 6: Combinatorics Calculator
+    const btnCalcCombinatorics = document.getElementById("btnCalcCombinatorics");
+
+    function factorial(num) {
+        if (num < 0) return 0n;
+        if (num === 0 || num === 1) return 1n;
+        let result = 1n;
+        for (let i = 2n; i <= BigInt(num); i++) {
+            result *= i;
+        }
+        return result;
+    }
+
+    if (btnCalcCombinatorics) {
+        btnCalcCombinatorics.addEventListener("click", () => {
+            const n = parseInt(document.getElementById("combN").value);
+            const r = parseInt(document.getElementById("combR").value);
+            const resEl = document.getElementById("resCombinatorics");
+
+            if (isNaN(n) || isNaN(r)) {
+                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Mohon isi nilai n dan r.`;
+                return;
+            }
+            if (n < 0 || r < 0) {
+                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Nilai n dan r harus non-negatif (n, r ≥ 0).`;
+                return;
+            }
+            if (r > n) {
+                resEl.innerHTML = `<span class="result-tag tag-danger">Error</span> Validasi gagal: Syarat 0 ≤ r ≤ n tidak terpenuhi (r tidak boleh lebih besar dari n).`;
+                return;
+            }
+
+            const nFact = factorial(n);
+            const rFact = factorial(r);
+            const nSubRFact = factorial(n - r);
+
+            const nPr = nFact / nSubRFact;
+            const nCr = nFact / (rFact * nSubRFact);
+
+            resEl.innerHTML = `
+                <span class="result-tag tag-info">Hasil Kombinatorika</span><br>
+                <strong>1. Permutasi P(${n}, ${r}) = ${nPr.toString()}</strong><br>
+                <small>Rumus: P(n,r) = n! / (n-r)!</small><br><br>
+                <strong>2. Kombinasi C(${n}, ${r}) = ${nCr.toString()}</strong><br>
+                <small>Rumus: C(n,r) = n! / (r! * (n-r)!)</small><br><br>
+                <small style="color: var(--brown-light);">
+                    <em>Catatan:</em> Permutasi memperhatikan urutan objek, sedangkan kombinasi tidak memperhatikan urutan.
+                </small>
+            `;
+        });
+    }
+
+    console.log("Welcome to My Little Garden! 🌷");
 });
