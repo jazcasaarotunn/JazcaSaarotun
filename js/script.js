@@ -130,7 +130,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // --------------------------------------
-    // 4. QUOTE HARI INI
+    // 4. A LITTLE INTRODUCTION & MY FAVORITES DATA (JS DATASET)
+    // --------------------------------------
+
+    // Data Pengantar & Hal Favorit versi JavaScript
+    const littleIntroduction = {
+        name: "Jazca",
+        role: "Mahasiswi Sistem Informasi",
+        university: "Ma'soem University",
+        nim: "262505015",
+        bio: "Halo! Selamat datang di sudut kecilku. Aku sangat menikmati proses belajar, mengeksplorasi teknologi baru, merangkai kata dalam buku, serta menikmati keindahan musik dan film favoritku."
+    };
+
+    const myFavorites = {
+        color: "Sage Green & Pastel Pink",
+        food: "Makanan manis & comfort food",
+        flower: "Tulip & Sunflower",
+        music: "Lo-fi beats & Chill pop",
+        movie: "Ghibli films & Inspiring stories"
+    };
+
+    // Fungsi opsional untuk menampilkan data introduction/favorites ke console atau elemen tertentu jika ada
+    console.log("--- A Little Introduction ---");
+    console.log(`Nama: ${littleIntroduction.name} (${littleIntroduction.nim})`);
+    console.log(`Status: ${littleIntroduction.role} di ${littleIntroduction.university}`);
+    console.log(`Bio: ${littleIntroduction.bio}`);
+    console.log("--- My Favorites ---", myFavorites);
+
+
+    // --------------------------------------
+    // 5. QUOTE HARI INI (DENGAN SENTUHAN INTRODUCTION & FAVORITES)
     // --------------------------------------
 
     const dailyQuote = document.getElementById("dailyQuote");
@@ -146,7 +175,9 @@ document.addEventListener("DOMContentLoaded", () => {
         "You deserve a life as lovely as a garden. 🌼",
         "Keep shining, little sunshine! ☀️",
         "Believe in your tiny little dreams. 🦋",
-        "Take your time, everything will bloom. 🌸"
+        "Take your time, everything will bloom. 🌸",
+        `Hi, I'm ${littleIntroduction.name} from Sistem Informasi Ma'soem University! ✨`,
+        `My favorite things: ${myFavorites.color} and good music! 🎧`
     ];
 
     function showRandomQuote() {
@@ -168,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // --------------------------------------
-    // 5. MENU AKTIF SESUAI HALAMAN
+    // 6. MENU AKTIF SESUAI HALAMAN
     // --------------------------------------
 
     const currentPage = window.location.pathname.split("/").pop() || "index.html";
@@ -185,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // --------------------------------------
-    // 6. ANIMASI SAAT ELEMEN MUNCUL
+    // 7. ANIMASI SAAT ELEMEN MUNCUL
     // --------------------------------------
 
     const animatedElements = document.querySelectorAll(
@@ -215,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // --------------------------------------
-    // 7. UCAPAN BERDASARKAN WAKTU
+    // 8. UCAPAN BERDASARKAN WAKTU
     // --------------------------------------
 
     const greeting = document.querySelector(".topbar-greeting");
@@ -236,7 +267,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // --------------------------------------
-    // 8. KALKULATOR MATEMATIKA INFORMATIKA (BUKTI BELAJAR)
+    // 9. KALKULATOR MATEMATIKA INFORMATIKA (BUKTI BELAJAR)
     // --------------------------------------
 
     // Level 1: Modulo Calculator
