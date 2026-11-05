@@ -17,7 +17,91 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        /* Styling Khusus Penyesuaian Ukuran Teks & Grid */
+        /* Styling Khusus Polaroid & Grid Profil */
+        .profile-banner-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            background: linear-gradient(135deg, var(--soft-cream), var(--warm-cream));
+            border: 1px solid rgba(168, 184, 154, 0.3);
+            border-radius: 25px;
+            padding: 35px 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .profile-banner-text {
+            flex: 1;
+        }
+
+        .profile-badge-cute {
+            display: inline-block;
+            background: var(--pink);
+            color: var(--brown-dark);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .profile-banner-text h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(26px, 3.5vw, 36px);
+            color: var(--sage-deep);
+            margin-bottom: 12px;
+        }
+
+        .profile-banner-text p {
+            font-size: 14px;
+            color: var(--brown-light);
+            line-height: 1.8;
+        }
+
+        .profile-signature-text {
+            font-family: 'Caveat', cursive;
+            font-size: 22px;
+            color: var(--sage-deep);
+            margin-top: 15px;
+        }
+
+        /* Framing Polaroid Foto */
+        .polaroid-frame {
+            width: 200px;
+            background: var(--white);
+            padding: 12px 12px 20px 12px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(87, 71, 56, 0.12);
+            transform: rotate(-3deg);
+            transition: var(--transition);
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .polaroid-frame:hover {
+            transform: rotate(0deg) translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .polaroid-frame img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            background: var(--warm-cream);
+        }
+
+        .polaroid-caption {
+            font-family: 'Caveat', cursive;
+            font-size: 18px;
+            color: var(--brown-dark);
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* Identity Cards Grid */
         .identity-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -59,7 +143,7 @@
             color: var(--sage-deep);
         }
 
-        /* Hobi Grid 3 Kolom & Teks Lebih Besar */
+        /* Hobi Grid 3 Kolom */
         .hobby-grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -100,8 +184,15 @@
             line-height: 1.6;
         }
 
-        /* Responsive Breakpoints */
+        /* Responsive */
         @media (max-width: 992px) {
+            .profile-banner-container {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .polaroid-frame {
+                transform: rotate(0deg);
+            }
             .identity-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -190,9 +281,28 @@
             <div>
                 <span class="section-eyebrow">ABOUT ME 🌷</span>
                 <h1>Profil & Perjalanan <span>♡</span></h1>
-                <p>Mahasiswi Sistem Informasi yang menyukai kerapian, desain, dan dunia analisis.</p>
+                <p>Mahasiswi Sistem Informasi yang menyukai kerapian, desain, dan hal-hal kreatif.</p>
             </div>
             <div class="heading-decoration">🌸</div>
+        </section>
+
+        <!-- Banner Profil + Foto Polaroid -->
+        <section class="profile-banner-container">
+            <div class="profile-banner-text">
+                <span class="profile-badge-cute">✨ PERKENALAN DIRI ✨</span>
+                <h1>Halo, Saya <span>Jazca</span> ♡</h1>
+                <p>
+                    Mahasiswi aktif Prodi Sistem Informasi. Memiliki ketertarikan untuk merapikan informasi digital, mengolah data, serta mengembangkan kreativitas visual secara estetik dan terstruktur.
+                </p>
+                <div class="profile-signature-text">"Bloom at your own pace." ♡</div>
+            </div>
+
+            <!-- Bingkai Polaroid untuk Foto Kamu -->
+            <div class="polaroid-frame">
+                <!-- Ganti foto-saya.jpg dengan nama file fotomu -->
+                <img src="foto-saya.jpg" alt="Foto Jazca" onerror="this.src='https://via.placeholder.com/200x180/A8B89A/FFFFFF?text=Foto+Jazca';">
+                <span class="polaroid-caption">Jazca ✨</span>
+            </div>
         </section>
 
         <!-- Informasi Identitas Utama (Grid Kotak-Kotak) -->
@@ -230,7 +340,7 @@
             </div>
         </section>
 
-        <!-- Hobbies Section (Tanpa 'Ngedit' & Teks Lebih Besar) -->
+        <!-- Hobbies Section -->
         <section class="profile-section">
             <div class="section-title">
                 <div>
@@ -259,7 +369,7 @@
             </div>
         </section>
 
-        <!-- Skills Section (Judul Diperbarui) -->
+        <!-- Skills Section (Disederhanakan) -->
         <section class="profile-section">
             <div class="section-title">
                 <div>
@@ -269,11 +379,7 @@
             </div>
             <div class="content-card skills-card">
                 <div>
-                    <div class="skill-info"><span>Analisis & Pemodelan Sistem</span><span>85%</span></div>
-                    <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div>
-                </div>
-                <div>
-                    <div class="skill-info"><span>Microsoft Excel & Financial Ledger</span><span>90%</span></div>
+                    <div class="skill-info"><span>Microsoft Excel</span><span>90%</span></div>
                     <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div>
                 </div>
                 <div>
