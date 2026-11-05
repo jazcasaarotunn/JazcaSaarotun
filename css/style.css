@@ -60,27 +60,6 @@ ul {
     list-style: none;
 }
 
-/* BACKGROUND DECORATION */
-.background-decoration {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-}
-
-.floating-flower {
-    position: absolute;
-    font-size: 20px;
-    opacity: 0.25;
-    animation: floating 6s ease-in-out infinite;
-}
-
-.flower-one { top: 10%; left: 5%; animation-delay: 0s; }
-.flower-two { top: 70%; left: 8%; animation-delay: 2s; }
-.flower-three { top: 20%; right: 7%; animation-delay: 1s; }
-.flower-four { top: 80%; right: 10%; animation-delay: 3s; }
-
 /* ================= SIDEBAR ================= */
 .sidebar {
     position: fixed;
@@ -106,7 +85,7 @@ ul {
     border-bottom: 1px dashed rgba(168, 184, 154, 0.4);
 }
 
-.brand-icon, .logo-icon {
+.brand-icon {
     width: 45px;
     height: 45px;
     background: var(--pink);
@@ -126,29 +105,6 @@ ul {
 .sidebar-header span {
     font-size: 11px;
     color: var(--brown-light);
-}
-
-.sidebar-profile {
-    padding: 20px 0;
-    text-align: center;
-    border-bottom: 1px dashed rgba(168, 184, 154, 0.4);
-}
-
-.sidebar-avatar {
-    position: relative;
-    width: 75px;
-    height: 75px;
-    margin: 0 auto 10px;
-    border-radius: 50%;
-    overflow: hidden;
-    background: var(--sage);
-    border: 3px solid var(--pink);
-}
-
-.sidebar-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
 
 .menu-title {
@@ -204,11 +160,6 @@ ul {
     font-size: 20px;
     color: var(--sage-deep);
     margin: 4px 0;
-}
-
-.sidebar-note small, .sidebar-note span {
-    font-size: 11px;
-    color: var(--brown-light);
 }
 
 .sidebar-footer {
@@ -330,162 +281,212 @@ ul {
     margin-bottom: 30px;
 }
 
-/* GARDEN HERO */
-.garden-hero {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 30px;
-    align-items: center;
+/* ================= BUKTI BELAJAR / 4 KOTAK KALKULATOR ================= */
+.learning-heading {
+    border-left: 6px solid var(--sage-deep);
 }
 
-.cute-tag {
+.learning-subtitle {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--sage-deep) !important;
+    margin-top: 4px;
+}
+
+/* Grid 2x2: Kotak Kalkulator Tampil Sejajar 2 Kolom & Rapi */
+.calculators-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.calc-card {
+    background: var(--soft-cream);
+    border-radius: 22px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(168, 184, 154, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition);
+}
+
+.calc-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-3px);
+}
+
+.calc-header {
+    margin-bottom: 20px;
+}
+
+.calc-badge {
     display: inline-block;
-    padding: 6px 12px;
-    border-radius: 20px;
-    background: var(--pink);
+    padding: 4px 10px;
+    border-radius: 12px;
+    background: var(--lavender);
+    color: var(--brown-dark);
     font-size: 10px;
     font-weight: 800;
-    color: var(--brown-dark);
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
-.garden-hero-text h2 {
+.calc-header h2 {
     font-family: 'DM Serif Display', serif;
-    font-size: 28px;
-    margin-bottom: 12px;
-    color: var(--brown-dark);
-}
-
-.garden-hero-text h2 span {
-    color: var(--sage-deep);
-}
-
-.garden-signature {
-    font-family: 'Caveat', cursive;
-    font-size: 22px;
-    color: var(--sage-deep);
-    margin-top: 15px;
-}
-
-.garden-hero-photo {
-    position: relative;
-    display: grid;
-    place-items: center;
-}
-
-.photo-frame {
-    width: 220px;
-    padding: 12px 12px 20px;
-    background: var(--white);
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(87, 71, 56, 0.12);
-    transform: rotate(-3deg);
-    transition: var(--transition);
-    text-align: center;
-}
-
-.photo-frame:hover {
-    transform: rotate(0deg) translateY(-5px);
-}
-
-.photo-caption {
-    font-family: 'Caveat', cursive;
     font-size: 18px;
     color: var(--brown-dark);
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.calc-header h2 i {
+    color: var(--sage-deep);
+    font-size: 16px;
+}
+
+.calc-header p {
+    font-size: 11px;
+    color: var(--brown-light);
+    margin-top: 4px;
+    line-height: 1.5;
+}
+
+.calc-body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.input-row {
+    display: flex;
+    gap: 12px;
+}
+
+.flex-1 { flex: 1; }
+.flex-2 { flex: 2; }
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+.input-group label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--brown-dark);
+}
+
+.input-group input, 
+.input-group select {
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(168, 184, 154, 0.4);
+    background: var(--white);
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    color: var(--text-dark);
+    outline: none;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.input-group input:focus, 
+.input-group select:focus {
+    border-color: var(--sage-deep);
+    box-shadow: 0 0 0 3px rgba(113, 134, 106, 0.15);
+}
+
+.calc-btn {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 14px;
+    background: var(--sage-deep);
+    color: var(--white);
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    width: 100%;
+    margin-top: 5px;
+}
+
+.calc-btn:hover {
+    background: var(--dark-sage);
+    transform: translateY(-2px);
+}
+
+.calc-result {
+    padding: 14px;
+    border-radius: 14px;
+    background: var(--warm-cream);
+    border: 1px dashed rgba(168, 184, 154, 0.5);
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--brown-dark);
+    min-height: 80px;
     margin-top: 10px;
 }
 
-.hero-flower {
-    position: absolute;
-    font-size: 24px;
-    animation: floating 5s ease-in-out infinite;
-}
-
-.flower-one { top: 0; left: 10px; }
-.flower-two { bottom: 10px; right: 10px; animation-delay: 1.5s; }
-.flower-three { top: 50%; right: 0; animation-delay: 2.5s; }
-
-/* HOBBY & QUICK INFO GRID */
-.profile-section {
-    margin-bottom: 35px;
-}
-
-.section-title {
-    margin-bottom: 18px;
-}
-
-.section-title h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 23px;
-    color: var(--brown-dark);
-}
-
-.hobby-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-}
-
-.hobby-card {
-    background: var(--soft-cream);
-    padding: 20px;
-    border-radius: 18px;
-    text-align: center;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-}
-
-.hobby-card:hover {
-    transform: translateY(-5px);
-    background: var(--white);
-}
-
-.hobby-image {
-    font-size: 32px;
-    margin-bottom: 10px;
-}
-
-.hobby-card h3 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 15px;
-    color: var(--brown-dark);
-    margin-bottom: 6px;
-}
-
-.hobby-card p {
-    font-size: 11px;
+.placeholder-text {
     color: var(--brown-light);
+    font-style: italic;
+    font-size: 11px;
 }
 
-/* DREAMS & MOTTO */
-.dream-card {
+.result-tag {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 10px;
+    margin-bottom: 4px;
+}
+
+.tag-success { background: #d4edda; color: #155724; }
+.tag-danger { background: #f8d7da; color: #721c24; }
+.tag-info { background: var(--butter-yellow); color: var(--brown-dark); }
+
+.number-system-results {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.sys-res-box {
+    background: var(--white);
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(168, 184, 154, 0.3);
     text-align: center;
-    padding: 35px 25px;
-    background: linear-gradient(135deg, var(--soft-cream), var(--warm-cream));
 }
 
-.dream-decoration {
-    font-size: 22px;
-    margin-bottom: 10px;
+.sys-res-box span {
+    display: block;
+    font-size: 9px;
+    font-weight: 800;
+    color: var(--brown-light);
+    margin-bottom: 2px;
 }
 
-.motto-card {
-    background: linear-gradient(120deg, var(--baby-pink), var(--lavender));
-    padding: 35px 20px;
-    border-radius: 25px;
-    text-align: center;
-    box-shadow: var(--shadow);
-    margin-bottom: 35px;
+.sys-res-box strong {
+    font-size: 13px;
+    color: var(--sage-deep);
+    word-break: break-all;
 }
 
-.motto-card h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 22px;
-    color: var(--brown-dark);
-    margin: 10px 0;
-}
-
+/* FOOTER */
 .footer {
     margin-top: 40px;
     padding: 25px 10px;
@@ -505,7 +506,7 @@ ul {
     margin-top: 5px;
 }
 
-/* ANIMASI MELAYANG */
+/* ANIMASI */
 @keyframes floating {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
@@ -532,17 +533,34 @@ body.dark-mode {
 body.dark-mode .sidebar,
 body.dark-mode .topbar,
 body.dark-mode .content-card,
-body.dark-mode .hobby-card,
+body.dark-mode .calc-card,
 body.dark-mode .page-heading {
     background: var(--soft-cream);
     color: var(--text-dark);
     border-color: rgba(255, 255, 255, 0.1);
 }
 
+body.dark-mode .input-group input, 
+body.dark-mode .input-group select {
+    background: #1a1a1a;
+    color: #f0eae1;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .calc-result {
+    background: #1a1a1a;
+    color: #f0eae1;
+}
+
+body.dark-mode .sys-res-box {
+    background: #222222;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
 /* ================= RESPONSIVE DESIGN ================= */
-@media (max-width: 1100px) {
-    .hobby-grid {
-        grid-template-columns: repeat(2, 1fr);
+@media (max-width: 1024px) {
+    .calculators-grid {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -564,15 +582,14 @@ body.dark-mode .page-heading {
     .menu-toggle {
         display: flex;
     }
-
-    .garden-hero {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
 }
 
 @media (max-width: 480px) {
-    .hobby-grid {
+    .input-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .number-system-results {
         grid-template-columns: 1fr;
     }
 }
