@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>About Jazca | My Little Garden</title>
+    <title>Dashboard | My Little Garden</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Nunito:wght@400;500;600;700;800&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
@@ -17,6 +16,39 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- CSS Khusus Animasi Bergerak untuk Tulisan Welcome -->
+    <style>
+        @keyframes welcomeBounce {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-6px) scale(1.03);
+            }
+        }
+
+        .welcome-animated-text {
+            display: inline-block;
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(32px, 4vw, 45px);
+            color: var(--sage-deep);
+            animation: welcomeBounce 2.5s ease-in-out infinite;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .welcome-banner-box {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, var(--soft-cream), var(--warm-cream));
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 35px;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
 </head>
 
 <body>
@@ -40,12 +72,12 @@
 
             <p class="menu-title">MENU UTAMA</p>
 
-            <a href="index.html" class="menu-link">
+            <a href="index.html" class="menu-link active">
                 <i class="fa-solid fa-house"></i>
                 <span>Dashboard</span>
             </a>
 
-            <a href="profil.html" class="menu-link active">
+            <a href="profil.html" class="menu-link">
                 <i class="fa-solid fa-user"></i>
                 <span>Profil Saya</span>
             </a>
@@ -87,7 +119,6 @@
         <header class="topbar">
 
             <div class="topbar-left">
-
                 <button class="menu-toggle" id="menuToggle">
                     <i class="fa-solid fa-bars"></i>
                 </button>
@@ -96,7 +127,6 @@
                     <p class="topbar-greeting">Hello, Lovely! 🌸</p>
                     <span>Welcome to my little garden</span>
                 </div>
-
             </div>
 
             <button class="theme-toggle" id="themeToggle" title="Ganti tema">
@@ -108,63 +138,111 @@
 
         <!-- Page Heading -->
         <section class="page-heading">
-
             <div>
                 <span class="section-eyebrow">
-                    A LITTLE CORNER ABOUT ME 🌷
+                    WELCOME BACK, JAZCA 🌷
                 </span>
 
-                <h1>Welcome to My Garden <span>♡</span></h1>
+                <h1>Garden Dashboard <span>♡</span></h1>
 
                 <p>
-                    A little place where you can get to know Jazca better.
+                    Semoga hari harimu menyenangkan dan penuh inspirasi baru!
                 </p>
             </div>
 
             <div class="heading-decoration">🦋</div>
+        </section>
+
+
+        <!-- Tulisan Welcome dengan Animasi Bergerak -->
+        <div class="welcome-banner-box content-card">
+            <span style="font-size: 24px;">✨🌸✨</span>
+            <h1 class="welcome-animated-text">Welcome to My Little Garden ♡</h1>
+            <p style="color: var(--brown-light); font-size: 13px;">
+                Tempat rahasia untuk merangkum perjalanan belajar, hobi, dan mimpiku.
+            </p>
+        </div>
+
+
+        <!-- Hero / Welcome Banner -->
+        <section class="garden-hero content-card">
+
+            <div class="garden-hero-text">
+                <span class="cute-tag">
+                    ✨ MA'SOEM UNIVERSITY
+                </span>
+
+                <h2>
+                    Halo, <span>Jazca</span>!
+                </h2>
+
+                <p>
+                    Sebagai mahasiswi **Sistem Informasi** dengan NIM **262505015**, 
+                    kamu bisa menggunakan dashboard ini untuk memantau perjalanan akademik, 
+                    bukti belajar, serta portofolio kreatifmu di sini.
+                </p>
+
+                <div class="garden-signature">
+                    Keep blooming, Jazca ♡
+                </div>
+            </div>
+
+            <div class="garden-hero-photo">
+                <div class="photo-frame">
+                    <img
+                        src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1dzNqOHB3NW42YjJ1eG93MWl1MWg1aWh1bHFxeTN5dnYya3R1eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3og0IPxMM0erATueNW/giphy.gif"
+                        alt="Cute Animated Kawaii Girl"
+                        style="object-fit: cover; width: 100%; height: 100%; border-radius: 15px;"
+                    >
+                    <span class="photo-caption">
+                        growing with joy ✨
+                    </span>
+                </div>
+
+                <span class="hero-flower flower-one">🌷</span>
+                <span class="hero-flower flower-two">🌼</span>
+                <span class="hero-flower flower-three">🦋</span>
+            </div>
 
         </section>
 
 
-        <!-- Education Journey (Currently Growing - Grid Format) -->
+        <!-- Quick Stats / Widget Grid -->
         <section class="profile-section">
 
             <div class="section-title">
-
                 <div>
                     <span class="section-eyebrow">
-                        MY GROWING JOURNEY
+                        GARDEN OVERVIEW
                     </span>
-
-                    <h2>Currently Growing <span>📚</span></h2>
+                    <h2>Quick Info <span>🌿</span></h2>
                 </div>
-
             </div>
 
             <div class="hobby-grid">
 
                 <article class="hobby-card">
-                    <div class="hobby-image">🌷</div>
-                    <h3>Nama</h3>
-                    <p><strong style="font-size: 16px; color: var(--sage-deep);">Jazca</strong></p>
+                    <div class="hobby-image">📅</div>
+                    <h3>Tanggal Hari Ini</h3>
+                    <p id="currentDate"><strong style="color: var(--sage-deep);">Memuat...</strong></p>
                 </article>
 
                 <article class="hobby-card">
-                    <div class="hobby-image">🆔</div>
-                    <h3>NIM</h3>
-                    <p><strong style="font-size: 16px; color: var(--sage-deep);">262505015</strong></p>
+                    <div class="hobby-image">⏰</div>
+                    <h3>Waktu Lokal</h3>
+                    <p id="currentTime"><strong style="color: var(--sage-deep);">Memuat...</strong></p>
                 </article>
 
                 <article class="hobby-card">
-                    <div class="hobby-image">🏛️</div>
-                    <h3>Study</h3>
-                    <p><strong style="font-size: 16px; color: var(--sage-deep);">Ma'soem University</strong></p>
+                    <div class="hobby-image">🎓</div>
+                    <h3>Status Akademik</h3>
+                    <p><strong style="font-size: 15px; color: var(--sage-deep);">Mahasiswa Aktif Sistem Informasi</strong></p>
                 </article>
 
                 <article class="hobby-card">
-                    <div class="hobby-image">💻</div>
-                    <h3>Prodi</h3>
-                    <p><strong style="font-size: 16px; color: var(--sage-deep);">Sistem Informasi</strong></p>
+                    <div class="hobby-image">🌸</div>
+                    <h3>Fakultas</h3>
+                    <p><strong style="font-size: 15px; color: var(--sage-deep);">Ma'soem University</strong></p>
                 </article>
 
             </div>
@@ -172,151 +250,30 @@
         </section>
 
 
-        <!-- My Hobbies -->
+        <!-- Quote of the Day Section -->
         <section class="profile-section">
 
             <div class="section-title">
-
                 <div>
                     <span class="section-eyebrow">
-                        THINGS THAT MAKE ME HAPPY
+                        DAILY INSPIRATION
                     </span>
-
-                    <h2>My Hobbies <span>🎧</span></h2>
+                    <h2>Quote Hari Ini <span>☁️</span></h2>
                 </div>
-
             </div>
 
-            <div class="hobby-grid">
-
-                <article class="hobby-card">
-
-                    <div class="hobby-image">🎧</div>
-
-                    <h3>Listening to Music</h3>
-
-                    <p>
-                        Menikmati musik dan menemukan lagu favorit.
-                    </p>
-
-                </article>
-
-
-                <article class="hobby-card">
-
-                    <div class="hobby-image">📖</div>
-
-                    <h3>Reading Books</h3>
-
-                    <p>
-                        Membaca cerita dan menemukan dunia baru.
-                    </p>
-
-                </article>
-
-
-                <article class="hobby-card">
-
-                    <div class="hobby-image">🎬</div>
-
-                    <h3>Watching Movies</h3>
-
-                    <p>
-                        Menonton film untuk hiburan dan inspirasi.
-                    </p>
-
-                </article>
-
-
-                <article class="hobby-card">
-
-                    <div class="hobby-image">🌻</div>
-
-                    <h3>Learning</h3>
-
-                    <p>
-                        Belajar hal baru dan mengembangkan diri.
-                    </p>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- Skills -->
-        <section class="profile-section">
-
-            <div class="section-title">
-
-                <div>
-                    <span class="section-eyebrow">
-                        THINGS I'M LEARNING
-                    </span>
-
-                    <h2>My Growing Skills <span>✨</span></h2>
+            <div class="dream-card content-card" style="text-align: center;">
+                <div class="dream-decoration">
+                    ✨🌷✨
                 </div>
 
-            </div>
+                <h3 id="dailyQuote" style="font-size: 22px; margin: 15px 0; transition: opacity 0.3s ease;">
+                    "Bloom at your own pace. 🌷"
+                </h3>
 
-            <div class="skills-card content-card">
-
-                <div class="skill-item">
-
-                    <div class="skill-info">
-                        <span>HTML</span>
-                        <span>80%</span>
-                    </div>
-
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 80%"></div>
-                    </div>
-
-                </div>
-
-
-                <div class="skill-item">
-
-                    <div class="skill-info">
-                        <span>CSS</span>
-                        <span>70%</span>
-                    </div>
-
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 70%"></div>
-                    </div>
-
-                </div>
-
-
-                <div class="skill-item">
-
-                    <div class="skill-info">
-                        <span>JavaScript</span>
-                        <span>50%</span>
-                    </div>
-
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 50%"></div>
-                    </div>
-
-                </div>
-
-
-                <div class="skill-item">
-
-                    <div class="skill-info">
-                        <span>Creativity</span>
-                        <span>85%</span>
-                    </div>
-
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 85%"></div>
-                    </div>
-
-                </div>
-
+                <button id="newQuote" style="margin-top: 15px; background: var(--sage-light); border: none; padding: 8px 18px; border-radius: 20px; font-family: 'Nunito', sans-serif; font-weight: 700; color: var(--sage-deep); cursor: pointer; transition: 0.2s;">
+                    Acak Quote Lainnya 🌸
+                </button>
             </div>
 
         </section>
@@ -324,7 +281,6 @@
 
         <!-- Personal Motto -->
         <section class="motto-card">
-
             <div class="motto-decoration">🌷</div>
 
             <span>MY LITTLE REMINDER</span>
@@ -334,19 +290,15 @@
             </h2>
 
             <div class="motto-decoration bottom">🦋</div>
-
         </section>
 
 
         <!-- Footer -->
         <footer class="footer">
-
             <p>Made with ♡ by Jazca</p>
-
             <span>
                 © 2026 My Little Garden. All rights reserved.
             </span>
-
         </footer>
 
     </main>
