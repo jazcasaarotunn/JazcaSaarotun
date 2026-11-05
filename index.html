@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Dashboard | My Little Garden</title>
 
     <!-- Google Fonts -->
@@ -16,37 +15,7 @@
 
     <!-- CSS Utama -->
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- CSS Animasi Ekstra Kreatif -->
-    <style>
-        @keyframes welcomeBounce {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-6px) scale(1.03); }
-        }
-
-        .welcome-animated-text {
-            display: inline-block;
-            font-family: 'DM Serif Display', serif;
-            font-size: clamp(28px, 4vw, 40px);
-            color: var(--sage-deep);
-            animation: welcomeBounce 2.5s ease-in-out infinite;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        .welcome-banner-box {
-            text-align: center;
-            padding: 30px 20px;
-            background: linear-gradient(135deg, var(--soft-cream), var(--warm-cream));
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            margin-bottom: 35px;
-            position: relative;
-            overflow: hidden;
-        }
-    </style>
 </head>
-
 <body>
 
     <!-- Mobile Overlay -->
@@ -89,7 +58,6 @@
         <div class="sidebar-note">
             <span>🌼</span>
             <p>Keep growing, little flower!</p>
-            <span>🦋</span>
         </div>
 
         <div class="sidebar-footer">
@@ -99,7 +67,6 @@
 
     <!-- Main Content -->
     <main class="main-content">
-
         <!-- Topbar -->
         <header class="topbar">
             <div class="topbar-left">
@@ -111,7 +78,6 @@
                     <span>Welcome to my little garden</span>
                 </div>
             </div>
-
             <button class="theme-toggle" id="themeToggle" title="Ganti tema">
                 <i class="fa-solid fa-moon"></i>
             </button>
@@ -122,43 +88,37 @@
             <div>
                 <span class="section-eyebrow">WELCOME BACK, JAZCA 🌷</span>
                 <h1>Garden Dashboard <span>♡</span></h1>
-                <p>Semoga hari harimu menyenangkan dan penuh inspirasi baru!</p>
+                <p>Semoga hari-harimu menyenangkan dan penuh inspirasi baru!</p>
             </div>
             <div class="heading-decoration">🦋</div>
         </section>
 
-        <!-- Tulisan Welcome dengan Animasi Bergerak -->
-        <div class="welcome-banner-box content-card">
+        <!-- Welcome Banner -->
+        <div class="content-card welcome-banner">
             <span style="font-size: 24px;">✨🌸✨</span>
             <h1 class="welcome-animated-text">Welcome to My Little Garden ♡</h1>
-            <p style="color: var(--brown-light); font-size: 13px;">
-                Tempat rahasia untuk merangkum perjalanan belajar, hobi, dan mimpiku.
-            </p>
+            <p>Tempat rahasia untuk merangkum perjalanan belajar, hobi, dan mimpiku.</p>
         </div>
 
-        <!-- Hero / Welcome Banner -->
+        <!-- Hero Section -->
         <section class="garden-hero content-card">
             <div class="garden-hero-text">
                 <span class="cute-tag">✨ MA'SOEM UNIVERSITY</span>
                 <h2>Halo, <span>Jazca</span>!</h2>
                 <p>
-                    Sebagai mahasiswi Sistem Informasi dengan NIM 262505015, kamu bisa menggunakan dashboard ini untuk memantau perjalanan akademik, bukti belajar, serta portofolio kreatifmu di sini.
+                    Sebagai mahasiswi <strong>Sistem Informasi</strong> dengan NIM <strong>262505015</strong>, kamu bisa menggunakan dashboard ini untuk memantau perjalanan akademik, bukti belajar, serta portofolio kreatifmu di sini.
                 </p>
                 <div class="garden-signature">Keep blooming, Jazca ♡</div>
             </div>
-
             <div class="garden-hero-photo">
                 <div class="photo-frame">
-                    <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1dzNqOHB3NW42YjJ1eG93MWl1MWg1aWh1bHFxeTN5dnYya3R1eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3og0IPxMM0erATueNW/giphy.gif" alt="Cute Animated Kawaii Girl" style="object-fit: cover; width: 100%; height: 100%; border-radius: 15px;">
+                    <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1dzNqOHB3NW42YjJ1eG93MWl1MWg1aWh1bHFxeTN5dnYya3R1eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3og0IPxMM0erATueNW/giphy.gif" alt="Kawaii Animation">
                     <span class="photo-caption">growing with joy ✨</span>
                 </div>
-                <span class="hero-flower flower-one">🌷</span>
-                <span class="hero-flower flower-two">🌼</span>
-                <span class="hero-flower flower-three">🦋</span>
             </div>
         </section>
 
-        <!-- Quick Info Widget Grid -->
+        <!-- Quick Info -->
         <section class="profile-section">
             <div class="section-title">
                 <div>
@@ -166,26 +126,22 @@
                     <h2>Quick Info <span>🌿</span></h2>
                 </div>
             </div>
-
             <div class="hobby-grid">
                 <article class="hobby-card">
                     <div class="hobby-image">📅</div>
                     <h3>Tanggal Hari Ini</h3>
                     <p id="currentDate"><strong style="color: var(--sage-deep);">Memuat...</strong></p>
                 </article>
-
                 <article class="hobby-card">
                     <div class="hobby-image">⏰</div>
                     <h3>Waktu Lokal</h3>
                     <p id="currentTime"><strong style="color: var(--sage-deep);">Memuat...</strong></p>
                 </article>
-
                 <article class="hobby-card">
                     <div class="hobby-image">🎓</div>
                     <h3>Status Akademik</h3>
                     <p><strong style="font-size: 13px; color: var(--sage-deep);">Mahasiswa Aktif Sistem Informasi</strong></p>
                 </article>
-
                 <article class="hobby-card">
                     <div class="hobby-image">🌸</div>
                     <h3>Fakultas</h3>
@@ -194,7 +150,7 @@
             </div>
         </section>
 
-        <!-- Quote Hari Ini Section -->
+        <!-- Quotes Section -->
         <section class="profile-section">
             <div class="section-title">
                 <div>
@@ -202,15 +158,10 @@
                     <h2>Quote Hari Ini <span>☁️</span></h2>
                 </div>
             </div>
-
-            <div class="dream-card content-card" style="text-align: center;">
+            <div class="dream-card content-card">
                 <div class="dream-decoration">✨🌷✨</div>
-                <h3 id="dailyQuote" style="font-size: 22px; margin: 15px 0; transition: opacity 0.3s ease;">
-                    "Bloom at your own pace. 🌷"
-                </h3>
-                <button id="newQuote" style="margin-top: 15px; background: var(--sage); border: none; padding: 8px 18px; border-radius: 20px; font-family: 'Nunito', sans-serif; font-weight: 700; color: var(--white); cursor: pointer; transition: 0.2s;">
-                    Acak Quote Lainnya 🌸
-                </button>
+                <h3 id="dailyQuote">"Bloom at your own pace. 🌷"</h3>
+                <button id="newQuote" class="quote-btn">Acak Quote Lainnya 🌸</button>
             </div>
         </section>
 
@@ -227,10 +178,8 @@
             <p>Made with ♡ by Jazca</p>
             <span>© 2026 My Little Garden. All rights reserved.</span>
         </footer>
-
     </main>
 
-    <!-- JavaScript -->
     <script src="js/script.js"></script>
 </body>
 </html>
