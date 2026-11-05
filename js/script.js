@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
 
-    // Cek preferensi tersimpan di localStorage
     const savedTheme = localStorage.getItem('garden_theme');
     if (savedTheme === 'dark') {
         body.classList.add('dark-mode');
@@ -50,14 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateDateTime() {
         const now = new Date();
-
-        // Format Tanggal Indonesia
         if (currentDateEl) {
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             currentDateEl.innerHTML = `<strong style="color: var(--sage-deep);">${now.toLocaleDateString('id-ID', options)}</strong>`;
         }
-
-        // Format Waktu Lokal
         if (currentTimeEl) {
             const timeString = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
             currentTimeEl.innerHTML = `<strong style="color: var(--sage-deep);">${timeString} WIB</strong>`;
@@ -93,27 +88,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    /* --- 5. EVENT LISTENER UNTUK TOMBOL KALKULATOR BUKTI BELAJAR --- */
+    /* --- 5. EVENT LISTENER TOMBOL KALKULATOR MATEMATIKA INFORMATIKA --- */
 
-    // Tombol Level 1 (Modulo)
+    // LEVEL 1: Modulo Calculator
     const btnCalcModulo = document.getElementById('btnCalcModulo');
     if (btnCalcModulo) {
         btnCalcModulo.addEventListener('click', hitungModulo);
     }
 
-    // Tombol Level 2 (Pengecek Kongruensi)
+    // LEVEL 2: Congruence Checker
     const btnCheckCongruence = document.getElementById('btnCheckCongruence');
     if (btnCheckCongruence) {
-        btnCheckCongruence.addEventListener('click', hitungKongruensi);
+        btnCheckCongruence.addEventListener('click', cekKongruensi);
     }
 
-    // Tombol Level 5 (Sistem Bilangan)
+    // LEVEL 5: Number System Calculator
     const btnConvertNum = document.getElementById('btnConvertNum');
     if (btnConvertNum) {
         btnConvertNum.addEventListener('click', konversiSistemBilangan);
     }
 
-    // Tombol Level 6 (Kombinatorika)
+    // LEVEL 6: Combinatorics Calculator
     const btnCalcCombinatorics = document.getElementById('btnCalcCombinatorics');
     if (btnCalcCombinatorics) {
         btnCalcCombinatorics.addEventListener('click', hitungKombinatorika);
@@ -123,71 +118,93 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* =====================================================
-   FUNGSI KALKULATOR (BUKTI BELAJAR) - BERSIH & AKURAT
+   FUNGSI KALKULATOR DENGAN PENJELASAN LANGKAH KERJA
    ===================================================== */
 
-// 1. Level 1: Kalkulator Modulo
+// LEVEL 1: Kalkulator Modulo (Dengan Penjelasan Detail Langkah Pengerjaan)
 function hitungModulo() {
     const a = parseInt(document.getElementById('modA').value);
     const m = parseInt(document.getElementById('modM').value);
     const hasilEl = document.getElementById('resModulo');
 
     if (isNaN(a) || isNaN(m)) {
-        hasilEl.innerHTML = `<span class="result-tag tag-danger">Salah / Error</span><br>Harap masukkan angka bilangan bulat dan modulus dengan benar!`;
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Error</span><br>Harap masukkan angka bilangan bulat a dan modulus m dengan benar!`;
         return;
     }
 
     if (m <= 0) {
-        hasilEl.innerHTML = `<span class="result-tag tag-danger">Salah / Error</span><br>Modulus m harus bernilai lebih besar dari 0!`;
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Error</span><br>Modulus m harus berupa bilangan bulat positif (m > 0)!`;
         return;
     }
 
+    // Rumus Matematika Diskrit untuk modulo (mendukung bilangan negatif)
     const sisaBagi = ((a % m) + m) % m;
     const hasilBagi = Math.floor(a / m);
 
     hasilEl.innerHTML = `
-        <span class="result-tag tag-success">Benar & Valid</span><br>
-        Sisa Bagi a mod m: <strong style="color: var(--sage-deep); font-size: 14px;">${sisaBagi}</strong><br>
-        <small style="color: var(--brown-light);">Penjelasan: ${a} = (${hasilBagi} x ${m}) + ${sisaBagi}</small>
+        <span class="result-tag tag-success">Berhasil Dihitung</span><br>
+        <strong>Hasil: ${a} mod ${m} = ${sisaBagi}</strong><br>
+        <div style="margin-top: 8px; padding: 10px; background: var(--warm-cream); border-radius: 10px; font-size: 12px; color: var(--brown-dark); border: 1px dashed rgba(168, 184, 154, 0.5); text-align: left;">
+            <strong>Langkah Pengerjaan:</strong><br>
+            1. Operasi modulo mencari sisa pembagian bulat antara a dan m.<br>
+            2. Rumus dasar: a = (hasil_bagi x m) + sisa<br>
+            3. Penjabaran: ${a} = (${hasilBagi} x ${m}) + ${sisaBagi}.<br>
+            4. Oleh karena itu, sisa hasil pembagian ${a} dibagi ${m} adalah <strong>${sisaBagi}</strong>.
+        </div>
     `;
 }
 
-// 2. Level 2: Pengecek Kongruensi
-function hitungKongruensi() {
+
+// LEVEL 2: Pengecek Kongruensi (Dengan Penjelasan Pembuktian m membagi (a - b))
+function cekKongruensi() {
     const a = parseInt(document.getElementById('congA').value);
     const b = parseInt(document.getElementById('congB').value);
     const m = parseInt(document.getElementById('congM').value);
     const hasilEl = document.getElementById('resCongruence');
 
     if (isNaN(a) || isNaN(b) || isNaN(m)) {
-        hasilEl.innerHTML = `<span class="result-tag tag-danger">Salah / Error</span><br>Harap isi semua kolom a, b, dan m dengan angka yang valid!`;
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Error</span><br>Harap isi semua kolom a, b, dan m dengan benar!`;
         return;
     }
 
     if (m <= 0) {
-        hasilEl.innerHTML = `<span class="result-tag tag-danger">Salah / Error</span><br>Modulus m harus lebih besar dari 0!`;
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Error</span><br>Modulus m harus berupa bilangan bulat positif (m > 0)!`;
         return;
     }
 
     const selisih = a - b;
-    const isKongruen = (selisih % m === 0);
+    const sisaMod = selisih % m;
+    const isKongruen = (sisaMod === 0);
 
     if (isKongruen) {
         hasilEl.innerHTML = `
-            <span class="result-tag tag-success">Benar (Kongruen)</span><br>
-            Pernyataan ${a} kongruen dengan ${b} (mod ${m}) adalah <strong>BENAR</strong>.<br>
-            <small style="color: var(--brown-light);">Alasan: Selisih (${a} - ${b} = ${selisih}) habis dibagi oleh ${m} (${selisih / m} x ${m}).</small>
+            <span class="result-tag tag-success">Status: KONGRUEN (BENAR)</span><br>
+            <strong>Pernyataan: ${a} kongruen dengan ${b} (mod ${m})</strong><br>
+            <div style="margin-top: 8px; padding: 10px; background: var(--warm-cream); border-radius: 10px; font-size: 12px; color: var(--brown-dark); border: 1px dashed rgba(168, 184, 154, 0.5); text-align: left;">
+                <strong>Langkah Pengerjaan & Pembuktian:</strong><br>
+                1. Konsep: a ≡ b (mod m) jika dan hanya jika m membagi habis (a - b).<br>
+                2. Hitung selisih: a - b = ${a} - ${b} = ${selisih}.<br>
+                3. Uji pembagian: ${selisih} / ${m} = ${selisih / m} (Habis dibagi tanpa sisa).<br>
+                4. Kesimpulan: Karena ${m} membagi habis ${selisih}, maka pernyataan <strong>KONGRUEN</strong>.
+            </div>
         `;
     } else {
         hasilEl.innerHTML = `
-            <span class="result-tag tag-danger">Tidak Kongruen</span><br>
-            Pernyataan ${a} kongruen dengan ${b} (mod ${m}) adalah <strong>SALAH</strong>.<br>
-            <small style="color: var(--brown-light);">Alasan: Selisih ${selisih} tidak habis dibagi oleh ${m}.</small>
+            <span class="result-tag tag-danger">Status: TIDAK KONGRUEN (SALAH)</span><br>
+            <strong>Pernyataan: ${a} tidak kongruen dengan ${b} (mod ${m})</strong><br>
+            <div style="margin-top: 8px; padding: 10px; background: var(--warm-cream); border-radius: 10px; font-size: 12px; color: var(--brown-dark); border: 1px dashed rgba(168, 184, 154, 0.5); text-align: left;">
+                <strong>Langkah Pengerjaan & Pembuktian:</strong><br>
+                1. Konsep: a ≡ b (mod m) jika dan hanya jika m membagi habis (a - b).<br>
+                2. Hitung selisih: a - b = ${a} - ${b} = ${selisih}.<br>
+                3. Uji pembagian: ${selisih} / ${m} menyisakan ${sisaMod}.<br>
+                4. Kesimpulan: Karena ${m} tidak habis membagi ${selisih}, maka pernyataan <strong>TIDAK KONGRUEN</strong>.
+            </div>
         `;
     }
 }
 
-// 3. Level 5: Kalkulator Sistem Bilangan
+
+// LEVEL 5: Kalkulator Sistem Bilangan
 function konversiSistemBilangan() {
     const inputVal = document.getElementById('numInput').value.trim();
     const base = parseInt(document.getElementById('numBase').value);
@@ -198,18 +215,25 @@ function konversiSistemBilangan() {
     const hexValEl = document.getElementById('hexVal');
 
     if (!inputVal) {
-        alert('Harap masukkan angka bilangan yang ingin dikonversi!');
+        alert('Harap masukkan bilangan yang ingin dikonversi!');
         return;
     }
 
-    let decimalValue;
-    try {
-        decimalValue = parseInt(inputVal, base);
-        if (isNaN(decimalValue)) {
-            throw new Error("Format tidak valid");
-        }
-    } catch (e) {
-        alert('Format angka tidak sesuai dengan basis asal yang dipilih!');
+    let regex;
+    if (base === 2) regex = /^[01]+$/;
+    else if (base === 8) regex = /^[0-7]+$/;
+    else if (base === 10) regex = /^[0-9]+$/;
+    else if (base === 16) regex = /^[0-9a-fA-F]+$/;
+
+    if (!regex.test(inputVal)) {
+        alert(`Input "${inputVal}" tidak valid untuk basis ${base} yang dipilih!`);
+        return;
+    }
+
+    let decimalValue = parseInt(inputVal, base);
+
+    if (isNaN(decimalValue)) {
+        alert('Format bilangan tidak valid.');
         return;
     }
 
@@ -219,19 +243,20 @@ function konversiSistemBilangan() {
     if (hexValEl) hexValEl.textContent = decimalValue.toString(16).toUpperCase();
 }
 
-// 4. Level 6: Kalkulator Kombinatorika
+
+// LEVEL 6: Kalkulator Kombinatorika (Dengan Penjelasan Rumus Permutasi & Kombinasi)
 function hitungKombinatorika() {
     const n = parseInt(document.getElementById('combN').value);
     const r = parseInt(document.getElementById('combR').value);
     const hasilEl = document.getElementById('resCombinatorics');
 
     if (isNaN(n) || isNaN(r) || n < 0 || r < 0) {
-        hasilEl.innerHTML = `<span class="result-tag tag-danger">Salah / Error</span><br>Masukkan nilai n dan r berupa bilangan bulat non-negatif (>= 0).`;
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Error</span><br>Masukkan nilai n dan r berupa bilangan bulat non-negatif (>= 0).`;
         return;
     }
 
     if (r > n) {
-        hasilEl.innerHTML = `<span class="result-tag tag-danger">Salah / Error</span><br>Nilai pilihan r tidak boleh lebih besar dari jumlah objek n!`;
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Error</span><br>Nilai pilihan r tidak boleh lebih besar dari jumlah objek n!`;
         return;
     }
 
@@ -252,10 +277,16 @@ function hitungKombinatorika() {
     const kombinasi = factN / (factR * factNR);
 
     hasilEl.innerHTML = `
-        <span class="result-tag tag-success">Berhasil Dihitung (Benar)</span><br>
+        <span class="result-tag tag-success">Berhasil Dihitung</span><br>
         <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 6px;">
             <div>🧮 <strong>Permutasi P(${n},${r}):</strong> <span style="color: var(--sage-deep); font-weight: 700;">${permutasi.toLocaleString('id-ID')}</span></div>
             <div>📊 <strong>Kombinasi C(${n},${r}):</strong> <span style="color: var(--sage-deep); font-weight: 700;">${kombinasi.toLocaleString('id-ID')}</span></div>
+            <div style="margin-top: 8px; padding: 10px; background: var(--warm-cream); border-radius: 10px; font-size: 12px; color: var(--brown-dark); border: 1px dashed rgba(168, 184, 154, 0.5); text-align: left;">
+                <strong>Langkah Pengerjaan & Rumus:</strong><br>
+                1. Nilai Faktorial: n! = ${n}! = ${factN}, (n-r)! = ${n-r}! = ${factNR}, r! = ${r}! = ${factR}.<br>
+                2. Rumus Permutasi: P(n,r) = n! / (n - r)! = ${factN} / ${factNR} = <strong>${permutasi.toLocaleString('id-ID')}</strong> (Memperhatikan urutan).<br>
+                3. Rumus Kombinasi: C(n,r) = n! / (r! x (n - r)!) = ${factN} / (${factR} x ${factNR}) = <strong>${kombinasi.toLocaleString('id-ID')}</strong> (Tanpa memperhatikan urutan).
+            </div>
         </div>
     `;
 }
