@@ -123,10 +123,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* =====================================================
-   FUNGSI KALKULATOR (BUKTI BELAJAR) - AKURAT & TERSTRUKTUR
+   FUNGSI KALKULATOR (BUKTI BELAJAR) - BERSIH & AKURAT
    ===================================================== */
 
-// 1. Level 1: Kalkulator Modulo ($a \pmod m$)
+// 1. Level 1: Kalkulator Modulo
 function hitungModulo() {
     const a = parseInt(document.getElementById('modA').value);
     const m = parseInt(document.getElementById('modM').value);
@@ -138,22 +138,21 @@ function hitungModulo() {
     }
 
     if (m <= 0) {
-        hasilEl.innerHTML = `<span class="result-tag tag-danger">Salah / Error</span><br>Modulus ($m$) harus bernilai lebih besar dari 0!`;
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Salah / Error</span><br>Modulus m harus bernilai lebih besar dari 0!`;
         return;
     }
 
-    // Rumus modulo akurat yang mendukung angka negatif
     const sisaBagi = ((a % m) + m) % m;
     const hasilBagi = Math.floor(a / m);
 
     hasilEl.innerHTML = `
         <span class="result-tag tag-success">Benar & Valid</span><br>
-        Sisa Bagi ($a \\pmod m$): <strong style="color: var(--sage-deep); font-size: 14px;">${sisaBagi}</strong><br>
-        <small style="color: var(--brown-light);">Penjelasan: $${a} = (${hasilBagi} \\times ${m}) + ${sisaBagi}$</small>
+        Sisa Bagi a mod m: <strong style="color: var(--sage-deep); font-size: 14px;">${sisaBagi}</strong><br>
+        <small style="color: var(--brown-light);">Penjelasan: ${a} = (${hasilBagi} x ${m}) + ${sisaBagi}</small>
     `;
 }
 
-// 2. Level 2: Pengecek Kongruensi ($a \equiv b \pmod m$)
+// 2. Level 2: Pengecek Kongruensi
 function hitungKongruensi() {
     const a = parseInt(document.getElementById('congA').value);
     const b = parseInt(document.getElementById('congB').value);
@@ -166,7 +165,7 @@ function hitungKongruensi() {
     }
 
     if (m <= 0) {
-        hasilEl.innerHTML = `<span class="result-tag tag-danger">Salah / Error</span><br>Modulus ($m$) harus lebih besar dari 0!`;
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Salah / Error</span><br>Modulus m harus lebih besar dari 0!`;
         return;
     }
 
@@ -176,14 +175,14 @@ function hitungKongruensi() {
     if (isKongruen) {
         hasilEl.innerHTML = `
             <span class="result-tag tag-success">Benar (Kongruen)</span><br>
-            Pernyataan $${a} \\equiv ${b} \\pmod{${m}}$ adalah <strong>BENAR</strong>.<br>
-            <small style="color: var(--brown-light);">Alasan: Selisih $(${a} - ${b} = ${selisih})$ habis dibagi oleh ${m} (${selisih / m} $\\times$ ${m}).</small>
+            Pernyataan ${a} kongruen dengan ${b} (mod ${m}) adalah <strong>BENAR</strong>.<br>
+            <small style="color: var(--brown-light);">Alasan: Selisih (${a} - ${b} = ${selisih}) habis dibagi oleh ${m} (${selisih / m} x ${m}).</small>
         `;
     } else {
         hasilEl.innerHTML = `
             <span class="result-tag tag-danger">Tidak Kongruen</span><br>
-            Pernyataan $${a} \\equiv ${b} \\pmod{${m}}$ adalah <strong>SALAH</strong>.<br>
-            <small style="color: var(--brown-light);">Alasan: Selisih $${selisih}$ tidak habis dibagi oleh ${m}.</small>
+            Pernyataan ${a} kongruen dengan ${b} (mod ${m}) adalah <strong>SALAH</strong>.<br>
+            <small style="color: var(--brown-light);">Alasan: Selisih ${selisih} tidak habis dibagi oleh ${m}.</small>
         `;
     }
 }
@@ -214,30 +213,28 @@ function konversiSistemBilangan() {
         return;
     }
 
-    // Tampilkan hasil dalam format kotak-kotak kecil yang rapi
     if (binValEl) binValEl.textContent = decimalValue.toString(2);
     if (decValEl) decValEl.textContent = decimalValue.toString(10);
     if (octValEl) octValEl.textContent = decimalValue.toString(8);
     if (hexValEl) hexValEl.textContent = decimalValue.toString(16).toUpperCase();
 }
 
-// 4. Level 6: Kalkulator Kombinatorika (Permutasi & Kombinasi)
+// 4. Level 6: Kalkulator Kombinatorika
 function hitungKombinatorika() {
     const n = parseInt(document.getElementById('combN').value);
     const r = parseInt(document.getElementById('combR').value);
     const hasilEl = document.getElementById('resCombinatorics');
 
     if (isNaN(n) || isNaN(r) || n < 0 || r < 0) {
-        hasilEl.innerHTML = `<span class="result-tag tag-danger">Salah / Error</span><br>Masukkan nilai $n$ dan $r$ berupa bilangan bulat non-negatif ($\\ge 0$).`;
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Salah / Error</span><br>Masukkan nilai n dan r berupa bilangan bulat non-negatif (>= 0).`;
         return;
     }
 
     if (r > n) {
-        hasilEl.innerHTML = `<span class="result-tag tag-danger">Salah / Error</span><br>Nilai pilihan ($r$) tidak boleh lebih besar dari jumlah objek ($n$)!`;
+        hasilEl.innerHTML = `<span class="result-tag tag-danger">Salah / Error</span><br>Nilai pilihan r tidak boleh lebih besar dari jumlah objek n!`;
         return;
     }
 
-    // Fungsi Faktorial Akurat
     function hitungFaktorial(num) {
         if (num === 0 || num === 1) return 1;
         let hasil = 1;
@@ -257,8 +254,8 @@ function hitungKombinatorika() {
     hasilEl.innerHTML = `
         <span class="result-tag tag-success">Berhasil Dihitung (Benar)</span><br>
         <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 6px;">
-            <div>🧮 <strong>Permutasi $P(${n},${r})$:</strong> <span style="color: var(--sage-deep); font-weight: 700;">${permutasi.toLocaleString('id-ID')}</span></div>
-            <div>📊 <strong>Kombinasi $C(${n},${r})$:</strong> <span style="color: var(--sage-deep); font-weight: 700;">${kombinasi.toLocaleString('id-ID')}</span></div>
+            <div>🧮 <strong>Permutasi P(${n},${r}):</strong> <span style="color: var(--sage-deep); font-weight: 700;">${permutasi.toLocaleString('id-ID')}</span></div>
+            <div>📊 <strong>Kombinasi C(${n},${r}):</strong> <span style="color: var(--sage-deep); font-weight: 700;">${kombinasi.toLocaleString('id-ID')}</span></div>
         </div>
     `;
 }
